@@ -22,7 +22,7 @@ The idea: **don't generate GTM content without reading the relevant framework fi
 | Onboarding a new account | `frameworks/onboarding.md` |
 | Call prep | `knowledge/call-prep-bundle.md` (consolidated bundle) |
 
-Full routing table: [`.claude/CLAUDE.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/.claude/CLAUDE.md).
+Full routing table: [`.claude/CLAUDE.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/.claude/CLAUDE.md).
 
 ## Why reading first
 
@@ -63,4 +63,4 @@ The weekly retro (`frameworks/retro.md`) mines this log. Patterns that emerge:
 
 - [Enforcement Hooks](enforcement-hooks.md) — how framework reading is verified, not just requested.
 - [Reference → Frameworks Index](../reference/frameworks.md) — all 18 frameworks, what they do, when they fire.
-- [ETHOS.md](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ETHOS.md) — the six operating principles that frameworks encode.
+- [ETHOS.md](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ETHOS.md) — the six operating principles that frameworks encode.

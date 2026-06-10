@@ -20,7 +20,7 @@ On session start, before responding to the first message:
 9. **Announce**: current priorities, overdue items, P0 TODOs, anything notable from scheduled-task handoffs.
 10. If no specific task requested, **recommend the highest-priority open item**.
 
-Full spec: [`frameworks/preamble.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/frameworks/preamble.md).
+Full spec: [`frameworks/preamble.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/frameworks/preamble.md).
 
 ## Why this matters
 
@@ -47,4 +47,4 @@ That's still your call. The preamble just ensures Claude is asking the right que
 
 - [The Frameworks](the-frameworks.md) — what Claude reads after the preamble, depending on your task.
 - [Accretive Knowledge](accretive-knowledge.md) — why `active-context.md`, `handoff.jsonl`, and `accounts/*.md` compound over time.
-- [ARCHITECTURE.md → Session Flow](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ARCHITECTURE.md) for the full lifecycle (preamble → work → end session).
+- [ARCHITECTURE.md → Session Flow](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md) for the full lifecycle (preamble → work → end session).

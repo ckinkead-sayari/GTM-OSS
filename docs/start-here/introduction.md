@@ -8,7 +8,7 @@ claudeGTM exists because AI assistants lose context the moment a conversation en
 
 ## Six operating principles
 
-These are non-negotiable. They shape every outreach, every call debrief, every recommendation. Full detail in [ETHOS.md](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ETHOS.md).
+These are non-negotiable. They shape every outreach, every call debrief, every recommendation. Full detail in [ETHOS.md](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ETHOS.md).
 
 ### 1. Research before everything
 

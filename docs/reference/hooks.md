@@ -92,7 +92,7 @@ Exit codes:
 
 Host-side launchd reaper. Polls every 10 seconds, removes orphan git lock files the Cowork sandbox couldn't unlink. Hardcoded scope: touches only `$HOME/claudeGTM/.git/{index,HEAD,ORIG_HEAD}.lock` — grown only when a lock type is actually observed stranded. Mid-op + ghost-aware live-holder + age guards.
 
-Audit trail at [`memory/reap-log.jsonl`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/memory/reap-log.jsonl). Full story: [ARCHITECTURE.md → Infrastructure Postmortems](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ARCHITECTURE.md#recurring-gitindexlock-stranding-s-020--s-025-resolved).
+Audit trail at [`memory/reap-log.jsonl`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/memory/reap-log.jsonl). Full story: [ARCHITECTURE.md → Infrastructure Postmortems](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md#recurring-gitindexlock-stranding-s-020--s-025-resolved).
 
 ### `com.claudegtm.git-reaper.plist`
 
@@ -119,4 +119,4 @@ Both layers coexist. Soft alone drifts; hard alone feels punitive. Together they
 ## See also
 
 - [Enforcement Hooks](../concepts/enforcement-hooks.md) — conceptual treatment.
-- [ARCHITECTURE.md → Infrastructure Postmortems](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ARCHITECTURE.md#infrastructure-postmortems) — the five lessons from the git-lock saga.
+- [ARCHITECTURE.md → Infrastructure Postmortems](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md#infrastructure-postmortems) — the five lessons from the git-lock saga.

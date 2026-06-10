@@ -16,7 +16,7 @@ Before drafting outreach, call prep, business cases, or anything account-specifi
 bash hooks/check-research.sh "ACME Bank"
 ```
 
-Fails if no research exists. Enforces [Principle 1 — Research Before Everything](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ETHOS.md#1-research-before-everything).
+Fails if no research exists. Enforces [Principle 1 — Research Before Everything](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ETHOS.md#1-research-before-everything).
 
 ### `hooks/check-framework.sh`
 
@@ -41,7 +41,7 @@ Scans prospect-facing content for banned language and fluff before it ships:
 echo "your draft email" | bash hooks/check-quality.sh
 ```
 
-Returns a list of violations. Enforces [Principle 4 — Consultant Tone](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ETHOS.md#4-consultant-tone-not-marketing-copy).
+Returns a list of violations. Enforces [Principle 4 — Consultant Tone](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ETHOS.md#4-consultant-tone-not-marketing-copy).
 
 ### `hooks/session-start.sh` + `hooks/session-end.sh` (wired)
 
@@ -53,7 +53,7 @@ A PreToolUse gate on `*create_draft*` tools: extracts the draft text from the to
 
 ### `hooks/git-safe.sh` + `hooks/reap-git-locks.sh`
 
-Infrastructure hooks, not content hooks. `git-safe.sh` is the wrapper scheduled tasks route all git ops through — it detects stale `.git/{index,HEAD,ORIG_HEAD}.lock` files, serializes concurrent writers, and exits with an actionable error on virtiofs EPERM. `reap-git-locks.sh` is the host-side launchd reaper that cleans up locks the Cowork sandbox can't unlink. Full story in [ARCHITECTURE.md → Infrastructure Postmortems](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ARCHITECTURE.md#recurring-gitindexlock-stranding-s-020--s-025-resolved).
+Infrastructure hooks, not content hooks. `git-safe.sh` is the wrapper scheduled tasks route all git ops through — it detects stale `.git/{index,HEAD,ORIG_HEAD}.lock` files, serializes concurrent writers, and exits with an actionable error on virtiofs EPERM. `reap-git-locks.sh` is the host-side launchd reaper that cleans up locks the Cowork sandbox can't unlink. Full story in [ARCHITECTURE.md → Infrastructure Postmortems](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md#recurring-gitindexlock-stranding-s-020--s-025-resolved).
 
 ## Soft vs. hard enforcement
 
@@ -66,7 +66,7 @@ Both layers required. Soft discipline alone erodes; hard enforcement alone feels
 
 ## Why this matters
 
-The operating principles in [ETHOS.md](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ETHOS.md) are non-negotiable. But "non-negotiable" only holds if there's a mechanism backing it. Hooks are that mechanism.
+The operating principles in [ETHOS.md](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ETHOS.md) are non-negotiable. But "non-negotiable" only holds if there's a mechanism backing it. Hooks are that mechanism.
 
 The alternative — trusting Claude to remember every principle at the moment of content generation — doesn't survive contact with deadlines. You'll get banned language back because "just this once, it fits." You'll get cold outreach without research because "we need to move fast." You'll get a framework-less business case because "I didn't want to read the whole file."
 

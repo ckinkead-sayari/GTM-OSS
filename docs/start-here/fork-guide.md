@@ -34,7 +34,7 @@ For the short version, start with [Quick Start](quick-start.md). This page is th
 ### 1. Clone your fork
 
 ```bash
-git clone git@github.com:YOUR-USERNAME/claudeGTM.git
+git clone git@github.com:ckinkead-sayari/GTM-OSS.git
 cd claudeGTM
 ```
 
@@ -109,7 +109,7 @@ For scheduled tasks, MCPs need to be **Local** (not cloud / project-scoped) — 
 
 ### 7. (Optional) Set up scheduled tasks
 
-See [`frameworks/scheduled-tasks-reference.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/frameworks/scheduled-tasks-reference.md) for patterns. Start with zero tasks — add them as you feel the manual-toil pain. Common starting points:
+See [`frameworks/scheduled-tasks-reference.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/frameworks/scheduled-tasks-reference.md) for patterns. Start with zero tasks — add them as you feel the manual-toil pain. Common starting points:
 
 - `daily-briefing` — morning priorities digest
 - `external-call-prep` — pre-stage call briefs for the day's meetings

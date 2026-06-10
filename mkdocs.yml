@@ -12,9 +12,10 @@
 #   mkdocs serve    # http://127.0.0.1:8000 with auto-reload
 
 site_name: claudeGTM
+site_url: https://ckinkead-sayari.github.io/GTM-OSS/
 site_description: Persistent context and enforced discipline for GTM work with Claude
-repo_url: https://github.com/YOUR-USERNAME/claudeGTM
-repo_name: YOUR-USERNAME/claudeGTM
+repo_url: https://github.com/ckinkead-sayari/GTM-OSS
+repo_name: ckinkead-sayari/GTM-OSS
 edit_uri: edit/main/docs/
 
 docs_dir: docs
@@ -85,7 +86,7 @@ plugins:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/YOUR-USERNAME/claudeGTM
+      link: https://github.com/ckinkead-sayari/GTM-OSS
   generator: false
 
 copyright: Single-user GTM operating system. Fork it, make it yours.

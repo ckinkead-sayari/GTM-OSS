@@ -34,7 +34,7 @@ All tasks share `frameworks/task-preamble.md`:
 - Write one-line summary to `memory/handoff.jsonl` on completion
 - `git add` + `git commit` + `git push` via `hooks/git-safe.sh` at end
 
-Per-task detail: [`frameworks/scheduled-tasks-reference.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/frameworks/scheduled-tasks-reference.md) (lazy-loaded — only read when debugging or designing new tasks).
+Per-task detail: [`frameworks/scheduled-tasks-reference.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/frameworks/scheduled-tasks-reference.md) (lazy-loaded — only read when debugging or designing new tasks).
 
 ## Why Local, not Cloud
 
@@ -60,7 +60,7 @@ Claude Code Routines (cloud) were evaluated and rejected in April 2026: research
 
 ## See also
 
-- [`frameworks/task-preamble.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/frameworks/task-preamble.md) — shared coordination boilerplate.
-- [`frameworks/task-coordination.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/frameworks/task-coordination.md) — dependency DAG, retry policy, trace events.
-- [`frameworks/scheduled-tasks-reference.md`](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/frameworks/scheduled-tasks-reference.md) — per-task steps.
-- [ARCHITECTURE.md](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ARCHITECTURE.md) — full system design.
+- [`frameworks/task-preamble.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/frameworks/task-preamble.md) — shared coordination boilerplate.
+- [`frameworks/task-coordination.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/frameworks/task-coordination.md) — dependency DAG, retry policy, trace events.
+- [`frameworks/scheduled-tasks-reference.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/frameworks/scheduled-tasks-reference.md) — per-task steps.
+- [ARCHITECTURE.md](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md) — full system design.

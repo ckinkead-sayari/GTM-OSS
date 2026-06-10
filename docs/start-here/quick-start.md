@@ -14,7 +14,7 @@ Prerequisites:
 ## 1. Clone your fork
 
 ```bash
-git clone git@github.com:YOUR-USERNAME/claudeGTM.git
+git clone git@github.com:ckinkead-sayari/GTM-OSS.git
 cd claudeGTM
 ```
 

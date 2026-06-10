@@ -70,4 +70,4 @@ Accretion is for findings, patterns, and institutional context — not for live 
 ## See also
 
 - [The Preamble](the-preamble.md) — how the accretive stores get loaded at session start.
-- [ARCHITECTURE.md → Accretive Knowledge Model](https://github.com/YOUR-USERNAME/claudeGTM/blob/main/ARCHITECTURE.md) for the fuller treatment.
+- [ARCHITECTURE.md → Accretive Knowledge Model](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md) for the fuller treatment.

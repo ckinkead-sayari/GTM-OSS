@@ -44,7 +44,7 @@ Every session starts cold.               Context compounds. Each session leaves
 ## Quick start (~15 minutes)
 
 ```bash
-git clone git@github.com:YOUR-USERNAME/claudeGTM.git && cd claudeGTM
+git clone git@github.com:ckinkead-sayari/GTM-OSS.git && cd GTM-OSS
 cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md   # fill in who you are
 bash hooks/check-config.sh                              # tells you what's missing
 ```
