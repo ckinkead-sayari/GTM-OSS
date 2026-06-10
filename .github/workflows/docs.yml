@@ -1,0 +1,29 @@
+# Deploys the mkdocs documentation site to GitHub Pages on every push to main.
+# First-time setup after publishing: Settings -> Pages -> deploy from the
+# gh-pages branch (GitHub usually configures this automatically once the
+# branch exists), then set site_url in mkdocs.yml.
+name: docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "requirements-docs.txt"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-docs.txt
+      - run: mkdocs gh-deploy --force

@@ -1,17 +1,15 @@
-# claudeGTM docs site — used for LOCAL preview only.
+# claudeGTM docs site.
 #
-# GitHub Pages cannot deploy from this repo (private repo + no GitHub
-# Enterprise Cloud). Docs are browseable directly on GitHub at
-# https://github.com/YOUR-USERNAME/claudeGTM/tree/main/docs.
+# Public repo: docs deploy to GitHub Pages automatically via
+# .github/workflows/docs.yml (mkdocs gh-deploy -> gh-pages branch).
+# After first publish: Settings -> Pages -> deploy from gh-pages
+# (GitHub usually configures this once the branch exists), then set
+# site_url to https://<owner>.github.io/<repo>/.
 #
-# To preview locally:
+# Local preview:
 #   python3 -m venv .venv-docs && source .venv-docs/bin/activate
 #   pip install -r requirements-docs.txt
 #   mkdocs serve    # http://127.0.0.1:8000 with auto-reload
-#
-# If this repo ever moves to public / GHE Cloud, re-add
-# .github/workflows/docs.yml (see git history for the deleted version)
-# and set site_url to https://<owner>.github.io/claudeGTM/.
 
 site_name: claudeGTM
 site_description: Persistent context and enforced discipline for GTM work with Claude
