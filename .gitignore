@@ -1,0 +1,32 @@
+# Claude Code worktrees
+.claude/worktrees/
+
+# Personal instance config (each user has their own)
+.claude/MY-CONFIG.md
+
+# Personal communication playbook (each user builds their own)
+knowledge/communication-playbook.md
+
+# Gemini CLI
+.gemini/
+
+# Generated binary assets (commit .md source, not .docx/.pptx)
+*.docx
+*.pptx
+
+# Per-deal working artifacts (decks, bid sheets, analyses) — not part of the OS
+deliverables/
+
+# LibreOffice lock files
+.~lock.*#
+
+# Node
+node_modules/
+package-lock.json
+assets/package.json
+
+# Host-side reaper stderr (rotating, not worth committing — reap-log.jsonl is the audit trail)
+memory/reap-stderr.log
+
+# mkdocs build output
+site/

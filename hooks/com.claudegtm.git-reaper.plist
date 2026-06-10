@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  com.claudegtm.git-reaper
+  Host-side LaunchAgent that reaps orphan .git/index.lock files
+  stranded by Cowork session-end commits (virtiofs unlink EPERM).
+
+  TODO: remove when Cowork virtiofs unlink is fixed.
+  See memory/active-context.md S-024 + claude-code-git-lock-brief.md.
+
+  Install:   bash hooks/install-reaper.sh
+  Uninstall: bash hooks/install-reaper.sh --uninstall
+  Status:    launchctl print gui/$UID/com.claudegtm.git-reaper
+  Logs:      memory/reap-log.jsonl (audit) + memory/reap-stderr.log (stderr)
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.claudegtm.git-reaper</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/YOUR-USERNAME/claudeGTM/hooks/reap-git-locks.sh</string>
+    </array>
+
+    <key>StartInterval</key>
+    <integer>10</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+
+    <key>Nice</key>
+    <integer>5</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/YOUR-USERNAME/claudeGTM/memory/reap-stderr.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/YOUR-USERNAME/claudeGTM/memory/reap-stderr.log</string>
+</dict>
+</plist>

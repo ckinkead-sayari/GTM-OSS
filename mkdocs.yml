@@ -1,0 +1,110 @@
+# claudeGTM docs site — used for LOCAL preview only.
+#
+# GitHub Pages cannot deploy from this repo (private repo + no GitHub
+# Enterprise Cloud). Docs are browseable directly on GitHub at
+# https://github.com/YOUR-USERNAME/claudeGTM/tree/main/docs.
+#
+# To preview locally:
+#   python3 -m venv .venv-docs && source .venv-docs/bin/activate
+#   pip install -r requirements-docs.txt
+#   mkdocs serve    # http://127.0.0.1:8000 with auto-reload
+#
+# If this repo ever moves to public / GHE Cloud, re-add
+# .github/workflows/docs.yml (see git history for the deleted version)
+# and set site_url to https://<owner>.github.io/claudeGTM/.
+
+site_name: claudeGTM
+site_description: Persistent context and enforced discipline for GTM work with Claude
+repo_url: https://github.com/YOUR-USERNAME/claudeGTM
+repo_name: YOUR-USERNAME/claudeGTM
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - content.code.copy
+    - content.action.edit
+    - search.suggest
+    - search.highlight
+    - search.share
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/YOUR-USERNAME/claudeGTM
+  generator: false
+
+copyright: Single-user GTM operating system. Fork it, make it yours.
+
+nav:
+  - Home: index.md
+  - Start Here:
+      - Quick Start: start-here/quick-start.md
+      - Introduction: start-here/introduction.md
+      - Fork Guide: start-here/fork-guide.md
+  - Concepts:
+      - The Preamble: concepts/the-preamble.md
+      - The Frameworks: concepts/the-frameworks.md
+      - Enforcement Hooks: concepts/enforcement-hooks.md
+      - Accretive Knowledge: concepts/accretive-knowledge.md
+  - Reference:
+      - Frameworks: reference/frameworks.md
+      - Knowledge Base: reference/knowledge.md
+      - Hooks: reference/hooks.md
+      - Scheduled Tasks: reference/scheduled-tasks.md

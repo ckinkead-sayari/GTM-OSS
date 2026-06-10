@@ -1,0 +1,13 @@
+# Pinned dependencies for building the claudeGTM docs site.
+# Regenerate with: pip-compile requirements-docs.in
+#
+# Install locally:
+#   python3 -m pip install -r requirements-docs.txt
+#   mkdocs serve    # preview at http://127.0.0.1:8000
+#   mkdocs build    # render to ./site/
+#
+# CI: .github/workflows/docs.yml runs the same.
+
+mkdocs==1.6.1
+mkdocs-material==9.5.40
+pymdown-extensions==10.11.2
