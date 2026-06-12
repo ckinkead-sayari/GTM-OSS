@@ -1,51 +1,36 @@
 # Knowledge Base Reference
 
-Institutional knowledge lives in `knowledge/` at the repo root. Content is captured once, reused every session. This page indexes what's there.
+The `knowledge/` directory is the single biggest lever in the system: it's what turns generic LLM output into content that reads like someone who knows your industry, your product, and your voice. This page documents the knowledge **model** — which files exist, what each is for, and when Claude reads them.
 
-## Banking (core domain)
+The kit ships templates; `/bootstrap` builds your versions (or import a teammate's via [Team Adoption](../start-here/team-adoption.md)).
 
-| File | Purpose | When to read |
-|------|---------|--------------|
-| [`domain-summary.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/domain-summary.md) | 1-page default: value prop, positioning, regulatory drivers, buyer personas | Before any outreach, call prep, objection handling |
-| [`domain-strategy.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/domain-strategy.md) | Deep-dive: full regulatory detail, competitive vulnerability matrices, proof-point sources | Business cases, full competitive review, new-account onboarding |
-| [`call-prep-bundle.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/call-prep-bundle.md) | Consolidated call-prep checklist (banking + products + health briefing + discovery questions) | Any external call prep |
-| [`product-capabilities.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/product-capabilities.md) | Current [YOUR_PRODUCT] capabilities across Graph/Map/API/Bulk/Data + recent feature releases | Call prep, champion docs, competitive discussions |
-| [`mcp-banking-positioning.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/mcp-banking-positioning.md) | MCP framing for banks, persona tailoring, objection library, drop-in snippets | MCP / agentic-architecture conversations with technical banking buyers |
+## Core files (build these — `/bootstrap` phases 2–4)
 
-## Personal (your voice)
+| File | What it holds | Read before |
+|------|---------------|-------------|
+| `domain-summary.md` | One page: your vertical's pain points, regulatory/market drivers, named competitors + why you win, proof points with sources, buyer personas | Every outreach, call prep, objection, business case |
+| `product-capabilities.md` | What your product actually does, by module — recent releases, integration points, and **what it does NOT do** (the honest-gaps section prevents overclaiming) | Call prep, champion docs, competitive conversations |
+| `communication-playbook.md` | Your email voice, extracted from your sent mail: openings, closings, length by context, tone markers, never-say list. **Gitignored — personal.** | Any outbound draft |
 
-| File | Purpose |
-|------|---------|
-| [`communication-playbook.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/communication-playbook.md) | **Gitignored per fork.** Your email voice, tone, patterns extracted from your own sent emails |
-| [`communication-playbook.template.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/communication-playbook.template.md) | Template to build `communication-playbook.md` from scratch |
+## Optional deep files (build when you feel the one-pager's limit)
 
-Every fork builds its own `communication-playbook.md`. That's what makes drafted outreach sound like you, not a generic LLM.
+| File | What it holds | When it earns its place |
+|------|---------------|------------------------|
+| `domain-strategy.md` | The deep-dive behind the one-pager: full regulatory detail, competitive vulnerability matrices, expanded proof points | Full business cases, new-account onboarding at scale, competitive reviews |
+| `call-prep-bundle.md` | Consolidated pre-call checklist: domain + product + health signals + discovery questions in one load | If your call prep develops vertical-specific steps (template included) |
+| Positioning packs (e.g. `technical-positioning.md`) | A focused pack for one recurring conversation type — a technical/API/agent story, a regulation, a use case. Pattern: framing, verified numbers, objection rows, persona tailoring, what-NOT-to-claim | When the same hard conversation keeps recurring and you're re-deriving the answer each time |
 
-## Tool usage patterns
+## Tool references (only for tools you actually use)
 
-| File | Purpose |
-|------|---------|
-| [`glean-skill.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/glean-skill.md) | Glean MCP best practices — agent routing, query optimization, Claude-Glean pairing |
-| [`glean-reference.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/glean-reference.md) | Glean app filters, agent IDs, status |
-| [`mixpanel-reference.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/mixpanel-reference.md) | Mixpanel account mapping, event weights, product type matrix, user properties |
-| [`gemini-delegation.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/gemini-delegation.md) | Gemini CLI patterns for Drive/Docs + large-context repo scans |
-| [`chrome-automation-patterns.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/chrome-automation-patterns.md) | Browser automation patterns for Chrome MCP |
+| File | What it holds |
+|------|---------------|
+| `chrome-automation-patterns.md` *(ships)* | Browser-automation patterns: setup, zoom-for-extraction, checkpoints, parallel research |
+| `gemini-delegation.md` *(ships)* | Delegating huge-context scans and Google Docs creation to a second model |
+| Your own additions (e.g. an analytics mapping file) | Account-to-identifier mappings, query patterns, data-quality gates for YOUR analytics stack |
 
-## Internal context
+## Rules that keep the knowledge base honest
 
-| File | Purpose |
-|------|---------|
-| [`internal-tooling.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/internal-tooling.md) | Map of [YOUR_PRODUCT] agents, hackathon projects, engineering tools, key contacts |
-| [`claudegtm-vs-market.md`](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/knowledge/claudegtm-vs-market.md) | Differentiation vs. off-the-shelf GTM tooling |
-
-## Usage rules
-
-- **Banking files** are the source of truth for outreach, calls, and business cases. Augment with fresh research, never contradict.
-- **Communication playbook** is read before drafting any email on your behalf.
-- **Glean skill** is read before Glean-heavy workflows or when designing new agents.
-- The **lazy-load principle** applies: not every session needs every file. Load on demand via the routing table in `.claude/CLAUDE.md`.
-
-## See also
-
-- [Accretive Knowledge](../concepts/accretive-knowledge.md) — why the knowledge base compounds session-over-session.
-- [.claude/CLAUDE.md → Knowledge Base section](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/.claude/CLAUDE.md) — the canonical summary inside Claude's instructions.
+1. **One page beats ten.** The domain summary is capped at one printed page because that's what reliably gets read in-session. Depth goes in `domain-strategy.md`, loaded only when the task warrants it.
+2. **Source of truth, refreshed not contradicted.** Sessions augment knowledge files with fresh research; if research contradicts a file, the file gets corrected — never silently overridden.
+3. **Read once per session.** Knowledge files load when their task type starts, then Claude works from memory (see `.claude/CLAUDE.md` → Working Efficiently).
+4. **Living documentation.** Product capabilities go stale fastest — update on every release that changes what you can promise. A stale capabilities file produces commitments your product can't keep.

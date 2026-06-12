@@ -67,6 +67,8 @@ flowchart LR
 
 Full walkthrough: [Quick Start](docs/start-here/quick-start.md) · [Fork Guide](docs/start-here/fork-guide.md) · **[An Example Session](docs/start-here/example-session.md)** (watch the whole loop run before you commit to anything) · [FAQ & Glossary](docs/start-here/faq.md).
 
+**Not on Claude Code?** The system is markdown + bash + git — [`AGENTS.md`](AGENTS.md) maps the same contract onto Codex/ChatGPT, Cursor, Zed, or any capable agent (hooks run manually, commands become procedures).
+
 ## What you bring
 
 The kit ships the framework; the value comes from what you encode:

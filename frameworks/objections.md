@@ -47,7 +47,7 @@ For each new objection, log it in this format under the right category:
 
 *"Is this just an AI wrapper?"* — Explain the architecture. Domain knowledge, tiered models, compounding data advantage.
 
-**MCP / agentic architecture objections** (e.g., "why MCP over a traditional API?", "we're not comfortable with non-deterministic retrieval in AML", "the spec is immature", "token costs will blow up", "our Second Line won't accept black-box retrieval") → load `knowledge/mcp-banking-positioning.md` which contains a seven-row MCP-specific objection library with vetted responses and the verified trade-off table.
+**MCP / agentic architecture objections** (e.g., "why MCP over a traditional API?", "we're not comfortable with non-deterministic retrieval in AML", "the spec is immature", "token costs will blow up", "our Second Line won't accept black-box retrieval") → load `knowledge/technical-positioning.md (build it when your product has a technical/API/agent story — see knowledge/README.md)` which contains a seven-row MCP-specific objection library with vetted responses and the verified trade-off table.
 
 ### Process / Authority
 

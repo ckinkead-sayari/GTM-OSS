@@ -46,7 +46,7 @@ case "$TASK" in
     ALSO_READ=""
     ;;
   mcp|mcp-conversation|mcp-outreach|technical-buyer|agentic|co-pilot|architecture-review)
-    FRAMEWORK="knowledge/mcp-banking-positioning.md"
+    FRAMEWORK="knowledge/technical-positioning.md"
     ALSO_READ="knowledge/product-capabilities.md (Section 9 — TM Integration)"
     ;;
   amlr|amla|regulatory-outreach)

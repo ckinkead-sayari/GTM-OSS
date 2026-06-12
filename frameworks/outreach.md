@@ -74,7 +74,7 @@ Before drafting any outreach, complete this research:
 
 **1. Read knowledge base:**
 - `knowledge/communication-playbook.md` — YOUR-NAME's actual voice, tone, email patterns, and phrases. Match this exactly.
-- `knowledge/domain-strategy.md` — [YOUR_PRODUCT]'s banking value proposition, competitive positioning, proof points, and buyer persona framing.
+- `knowledge/domain-strategy.md` — [YOUR_PRODUCT]'s domain value proposition, competitive positioning, proof points, and buyer persona framing.
 
 **2. Internal research via Glean MCP:**
 - `search` with query "[Account Name]" — find recent Gong calls, Slack threads, email exchanges, SFDC records
@@ -104,7 +104,7 @@ When drafting outreach to existing customers, the **weakest health score compone
 
 | Weakest Component | Messaging Focus | Open With | Avoid |
 |-------------------|----------------|-----------|-------|
-| **Leading Score** (adoption declining, feature breadth narrowing, users not growing) | Training, onboarding help, workflow optimization. "Your team might not know about X." | "I noticed your team hasn't used [feature] yet — it's been a game-changer for [peer bank] in [use case]." | Expansion pitches, upsell, new scope proposals |
+| **Leading Score** (adoption declining, feature breadth narrowing, users not growing) | Training, onboarding help, workflow optimization. "Your team might not know about X." | "I noticed your team hasn't used [feature] yet — it's been a game-changer for [peer company] in [use case]." | Expansion pitches, upsell, new scope proposals |
 | **Lagging Score** (event volume dropping, users going dark, concentration spiking) | Value reinforcement, "here's what you'd lose", exec-level engagement, root cause investigation. | "I wanted to check in — I've noticed a shift in how your team is using [YOUR_PRODUCT] and wanted to make sure everything's aligned." | Feature announcements, training offers, casual check-ins |
 | **Context Score** (competitor mentioned, MEDDPICC gaps, renewal imminent, exec sponsor changed) | Competitive differentiation, business case refresh, exec sponsorship, "You Said / We Did" value narrative. | "I heard [competitor] came up in conversation. I wanted to share what our customers typically find when they compare..." | Generic check-ins, product updates, training |
 | **All components healthy** | Expansion, new use cases, peer benchmarking, QBR scheduling. | "Your team's usage has been strong — I wanted to explore whether [new capability/scope] makes sense." | Rescue/concern messaging, defensive tone |
@@ -119,7 +119,7 @@ These are single-touch, time-sensitive actions triggered by specific usage data 
 |---------|-----------|-------------------------|
 | User does first `export` or `add_to_graph` (high-value event) | Mixpanel usage sync | "I noticed [Name] ran their first [export/graph build] — that's a great sign. Here's a quick tip: [specific workflow suggestion]. Happy to do a 15-min walkthrough if useful." |
 | Previously dark user logs back in after 30+ days | Mixpanel `$last_seen` vs prior | "Good to see [Name] back in the platform. If anything's changed on your end or you need a refresher on what's new, I'm around." |
-| Feature breadth jumps (3+ new event types in a week) | Mixpanel event type count | "I see your team started using [X, Y, Z] — that's exactly how [peer bank] expanded their workflow. Worth a quick chat about how to get the most from those features?" |
+| Feature breadth jumps (3+ new event types in a week) | Mixpanel event type count | "I see your team started using [X, Y, Z] — that's exactly how [peer company] expanded their workflow. Worth a quick chat about how to get the most from those features?" |
 | Account z-score crosses -2 (significant drop) | Mixpanel EWMA/z-score | "I noticed a shift in your team's usage this week and wanted to check in directly — is everything working as expected? Happy to jump on a quick call." |
 | Competitor mentioned in Gong transcript | gong-pipeline-sync extraction | See Competitive Defense sequence in `frameworks/sequences.md` |
 
@@ -129,9 +129,9 @@ These are single-touch, time-sensitive actions triggered by specific usage data 
 
 *Add vertical-specific templates below as you learn what works for different buyer types.*
 
-### MCP / Agentic Architecture (technical buyer at a bank)
+### MCP / Agentic Architecture (technical buyer)
 
-When outreach, replies, or follow-ups concern [YOUR_PRODUCT]'s MCP offering — covering either the use-case question ("why is this a good fit for agentic orchestration?") or the protocol question ("why MCP over a traditional API?") — load `knowledge/mcp-banking-positioning.md` before drafting. It contains:
+When outreach, replies, or follow-ups concern [YOUR_PRODUCT]'s MCP offering — covering either the use-case question ("why is this a good fit for agentic orchestration?") or the protocol question ("why MCP over a traditional API?") — load `knowledge/technical-positioning.md (build it when your product has a technical/API/agent story — see knowledge/README.md)` before drafting. It contains:
 - The two-question framing so replies don't duck the product-fit half of the question
 - Five drop-in email snippets (A: use-case opener, B: data-shape, C: protocol, D: trade-offs, E: the ask) tuned to senior-consultant voice
 - Persona-tailored guidance for technical, business, and risk/audit buyers

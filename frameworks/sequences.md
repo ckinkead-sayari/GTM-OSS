@@ -42,7 +42,7 @@ For contacts at target accounts with no prior relationship. Grounded in domain-s
 |------|-----|---------|-------------|
 | 1 | 0 | Research-led intro — lead with their specific problem | 4 sentences. Their pain + evidence you understand it. No pitch. |
 | 2 | 3 | Value insight — share a relevant data point or regulatory trend | 3-4 sentences. Link to something useful (not a [YOUR_PRODUCT] asset). |
-| 3 | 7 | Proof point — a Tier-1 reference bank PoC, 73.9% FP reduction, or relevant case | 4-5 sentences. Specific outcome at a peer institution. |
+| 3 | 7 | Proof point — a Tier-1 reference bank PoC, [your verified proof-point metric], or relevant case | 4-5 sentences. Specific outcome at a peer institution. |
 | 4 | 14 | Trigger event — reference something recent (enforcement, earnings, hire) | 3-4 sentences. Show you're paying attention to their world. |
 | 5 | 21 | Breakup — honest close, leave the door open | 3 sentences. "I'll stop reaching out, but if X changes, happy to talk." |
 
@@ -119,17 +119,17 @@ Exit conditions: Meeting booked → Completed. No response → Paused for 30 day
 
 ### Competitive Defense (3 steps, 7 days)
 
-Triggered when `gong-pipeline-sync` detects a competitor mention (Quantexa, LSEG, Moody's, LexisNexis, Encompass, D&B) in a Gong transcript for a key account. Speed matters — competitor POCs move fast.
+Triggered when `gong-pipeline-sync` detects a competitor mention ([your named competitors — list them in knowledge/domain-summary.md]) in a Gong transcript for a key account. Speed matters — competitor POCs move fast.
 
 | Step | Day | Purpose | Email Style |
 |------|-----|---------|-------------|
-| 1 | 0 | Champion reinforcement — address the competitor directly. Pull differentiators from `knowledge/domain-strategy.md`. Surface a relevant proof point. | 4-5 sentences. "I heard [Competitor] came up. Here's what our customers typically find when they compare: [specific differentiator]. [Proof point from a Tier-1 reference bank/similar bank]." |
+| 1 | 0 | Champion reinforcement — address the competitor directly. Pull differentiators from `knowledge/domain-strategy.md`. Surface a relevant proof point. | 4-5 sentences. "I heard [Competitor] came up. Here's what our customers typically find when they compare: [specific differentiator]. [Proof point from a peer company]." |
 | 2 | 3 | Value summary — specific to what they already use, quantified. Not generic. Show switching cost. | 4-5 sentences. "Your team has built [X graphs/resolved Y cases/exported Z analyses] in [YOUR_PRODUCT]. Here's what that would look like to rebuild." |
 | 3 | 7 | Executive engagement — if no response, escalate internally. [YOUR_PRODUCT] leadership reaches out to account sponsor. | Internal escalation, not email to customer. Flag to [YOUR_PRODUCT] leadership: "[Account] has active competitor evaluation. Champion not responding. Need exec-to-exec." |
 
 Exit conditions: Champion confirms [YOUR_PRODUCT] retained → Completed. Active POC confirmed → escalate to exec engagement + urgent competitive battle plan. No response after step 3 → flag as HIGH churn risk.
 
-**Key rule:** Never badmouth the competitor. Lead with what makes [YOUR_PRODUCT] different (data breadth, 10.6B records, ownership structures, regulatory coverage), not what's wrong with the alternative.
+**Key rule:** Never badmouth the competitor. Lead with what makes [YOUR_PRODUCT] different ([your structural differentiators — from knowledge/domain-summary.md]), not what's wrong with the alternative.
 
 ### Early Warning Outreach (2 steps, 10 days)
 
@@ -137,8 +137,8 @@ Triggered when Leading Score declines (z < -1) while Lagging Score remains stabl
 
 | Step | Day | Purpose | Email Style |
 |------|-----|---------|-------------|
-| 1 | 0 | Proactive check-in — "I noticed your team hasn't explored [feature they stopped using]. Wanted to share how [peer bank] uses it for [use case]." | 3-4 sentences. Helpful, not alarming. Position as training/optimization, not concern. |
-| 2 | 10 | Offer structured training — "I'd like to run a 30-minute session for your team on [under-adopted features]. [Peer bank] found it increased their investigation speed by X." | 3-4 sentences. Specific training proposal tied to their unused features. |
+| 1 | 0 | Proactive check-in — "I noticed your team hasn't explored [feature they stopped using]. Wanted to share how [peer company] uses it for [use case]." | 3-4 sentences. Helpful, not alarming. Position as training/optimization, not concern. |
+| 2 | 10 | Offer structured training — "I'd like to run a 30-minute session for your team on [under-adopted features]. [Peer company] found it increased their investigation speed by X." | 3-4 sentences. Specific training proposal tied to their unused features. |
 
 Exit conditions: Feature breadth recovers (Leading Score z > 0) → Completed. No response + Lagging starts declining → escalate to Churn Intervention.
 
@@ -211,8 +211,8 @@ The first sentence earns the second. If it doesn't make the prospect think "rele
 
 ### Stats & Social Proof
 
-**Use observation framing:** "Most banks we audit are leaving 30-40% of their adverse media alerts unresolved."
-**Not study framing:** "According to our data, 73% of banks have this problem."
+**Use observation framing:** "Most [vertical] firms we audit are leaving 30-40% of their adverse media alerts unresolved."
+**Not study framing:** "According to our data, 73% of [vertical] firms have this problem."
 
 Observation sounds like earned experience. Study framing sounds like a marketing claim. Never fabricate specific client names, revenue numbers, or case study specifics you can't verify.
 

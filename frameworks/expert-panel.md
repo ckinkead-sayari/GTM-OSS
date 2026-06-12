@@ -64,7 +64,7 @@ Build a panel of 7-10 experts tailored to the content type and audience.
 
 | Dimension | 0-25 Scale | What Earns Points |
 |-----------|-----------|-------------------|
-| **Data Foundation** | 0-5: no data. 6-15: some stats, unverified. 16-20: specific + sourced. 21-25: real data, recent, verifiable, prospect-specific. | Real numbers from Mixpanel, SFDC, or public sources. Named proof points (a Tier-1 reference bank PoC, 73.9% FP reduction). No round numbers. |
+| **Data Foundation** | 0-5: no data. 6-15: some stats, unverified. 16-20: specific + sourced. 21-25: real data, recent, verifiable, prospect-specific. | Real numbers from Mixpanel, SFDC, or public sources. Named proof points (a Tier-1 reference bank PoC, [your verified proof-point metric]). No round numbers. |
 | **Actionability** | 0-5: vague recommendation. 6-15: clear next step, unclear path. 16-20: specific timeline + resources. 21-25: step-by-step with owners and dates. | "Sign by [date]" beats "consider this." Named stakeholders. Realistic timelines. |
 | **ROI Clarity** | 0-5: no business case. 6-15: qualitative benefits only. 16-20: estimated savings/returns. 21-25: 4:1+ ROI demonstrated with cost comparison to alternatives. | Comparison to status quo cost. Break-even timeline. Conservative estimates with assumptions stated. |
 | **Risk Assessment** | 0-5: "no downsides." 6-15: mentions risks vaguely. 16-20: specific risks + mitigations. 21-25: honest tradeoffs, dependencies identified, contingency plan. | Acknowledging implementation effort. Naming what could go wrong. Not overselling. |

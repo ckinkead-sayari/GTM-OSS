@@ -17,7 +17,7 @@ Scheduled tasks and interactive sessions both write one-line summaries here on c
 Example entries:
 
 ```json
-{"source":"gong-pipeline-sync","ts":"2026-04-14T17:08:00Z","action":"pipeline_synced","details":"Account_F TM API CLOSED LOST -$170K; Account_A LSEG CLOSED LOST -$125K; Account_E CIB CLOSED WON +$873K"}
+{"source":"gong-pipeline-sync","ts":"2026-04-14T17:08:00Z","action":"pipeline_synced","details":"Account_F TM API CLOSED LOST -$170K; Account_A Vendor_X CLOSED LOST -$125K; Account_E CIB CLOSED WON +$873K"}
 {"source":"interactive","ts":"2026-04-20T13:05:00Z","action":"session_summary","details":"S-020: unblocked stale .git/index.lock, shipped hooks/git-safe.sh (fb8df2a)"}
 ```
 
