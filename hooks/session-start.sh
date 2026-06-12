@@ -4,7 +4,10 @@
 # so enforcement state is visible even when the manual preamble gets skipped
 # (the S-033 failure mode). This is the detection layer; the full preamble
 # (frameworks/preamble.md) is still the protocol.
-# Keep it fast and read-only: no git pull, no network, no writes.
+# Keep it fast and read-only: no git pull, no writes. One exception to
+# no-network: a 5s-bounded, fail-silent GitHub visibility probe (privacy
+# guard) — a PUBLIC origin holding account dossiers publishes client data,
+# which is the one mistake this system cannot undo.
 set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -25,6 +28,46 @@ bash hooks/check-mcp.sh 2>&1 | head -3
 branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "?")
 dirty=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
 echo "Git: branch ${branch}, ${dirty} uncommitted path(s)$( [ "${dirty:-0}" -gt 0 ] && echo ' — if these predate this session, a prior end-session commit was missed' )"
+
+# Privacy guard: warn loudly if origin is PUBLIC while the repo holds working
+# data (dossiers beyond the shipped example, or analytics). Bounded to 5s and
+# fail-silent — offline/no-gh sessions skip it without noise.
+origin_url=$(git remote get-url origin 2>/dev/null || true)
+if [ -n "$origin_url" ] && command -v gh >/dev/null 2>&1 && command -v python3 >/dev/null 2>&1; then
+  slug=$(printf '%s' "$origin_url" | sed -E 's#^(git@github\.com:|https://github\.com/)##; s#\.git$##')
+  case "$slug" in
+    */*)
+      vis=$(python3 - "$slug" <<'PY' 2>/dev/null
+import subprocess, sys
+try:
+    r = subprocess.run(["gh", "api", f"repos/{sys.argv[1]}", "--jq", ".visibility"],
+                       capture_output=True, timeout=5, text=True)
+    print(r.stdout.strip())
+except Exception:
+    pass
+PY
+)
+      if [ "$vis" = "public" ]; then
+        has_data=0
+        for f in accounts/*.md; do
+          [ -e "$f" ] || continue
+          case "$f" in */README.md|*/EXAMPLE-*) continue ;; esac
+          has_data=1; break
+        done
+        [ -s memory/analytics.jsonl ] && has_data=1
+        if [ "$has_data" -eq 1 ]; then
+          echo "🔴 PRIVACY: origin (${slug}) is PUBLIC and this repo contains working data (dossiers/analytics)."
+          echo "   Client data is being published. Fix NOW: gh repo edit ${slug} --visibility private"
+        fi
+      fi
+      ;;
+  esac
+fi
+
+# Fresh fork that hasn't been set up yet → point at the guided path once.
+if [ ! -f knowledge/domain-summary.md ] && [ -f .claude/commands/bootstrap.md ]; then
+  echo "SETUP: knowledge files not built yet — run /bootstrap (guided ~30-45 min: interview + research, Claude writes them)."
+fi
 
 ac_age=$(age_days memory/active-context.md)
 ho_age=$(age_days memory/handoff.jsonl)

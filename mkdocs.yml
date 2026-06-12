@@ -97,6 +97,9 @@ nav:
       - Quick Start: start-here/quick-start.md
       - Introduction: start-here/introduction.md
       - Fork Guide: start-here/fork-guide.md
+      - An Example Session: start-here/example-session.md
+      - Connect Your Stack: start-here/connect-your-stack.md
+      - Customize for Your Domain: start-here/customize-for-your-domain.md
   - Concepts:
       - The Preamble: concepts/the-preamble.md
       - The Frameworks: concepts/the-frameworks.md

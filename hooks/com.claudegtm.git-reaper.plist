@@ -21,7 +21,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/bin/bash</string>
-        <string>/Users/YOUR-USERNAME/claudeGTM/hooks/reap-git-locks.sh</string>
+        <string>/Users/ckinkead-sayari/GTM-OSS/hooks/reap-git-locks.sh</string>
     </array>
 
     <key>StartInterval</key>
@@ -37,9 +37,9 @@
     <integer>5</integer>
 
     <key>StandardOutPath</key>
-    <string>/Users/YOUR-USERNAME/claudeGTM/memory/reap-stderr.log</string>
+    <string>/Users/ckinkead-sayari/GTM-OSS/memory/reap-stderr.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/Users/YOUR-USERNAME/claudeGTM/memory/reap-stderr.log</string>
+    <string>/Users/ckinkead-sayari/GTM-OSS/memory/reap-stderr.log</string>
 </dict>
 </plist>

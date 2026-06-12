@@ -19,10 +19,15 @@ if [ ! -f "$CONFIG_FILE" ]; then
   echo ""
   echo "  .claude/MY-CONFIG.md does not exist."
   echo ""
-  echo "  To fix: cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md"
-  echo "  Then fill in your personal values (name, accounts, service IDs)."
+  if [ -f "$REPO_ROOT/.claude/commands/bootstrap.md" ]; then
+    echo "  To fix: run /bootstrap (guided setup — writes this file with you)."
+    echo "  Manual: cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md"
+  else
+    echo "  To fix: cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md"
+    echo "  Then fill in your personal values (name, accounts, service IDs)."
+  fi
   echo ""
-  echo "  See FORK-GUIDE.md for full setup instructions."
+  echo "  Full instructions: docs/start-here/fork-guide.md"
   exit 1
 fi
 
@@ -67,7 +72,7 @@ if [ ! -f "$PLAYBOOK_FILE" ]; then
   if [ -f "$PLAYBOOK_TEMPLATE" ]; then
     WARNINGS+=("knowledge/communication-playbook.md does not exist. Create it from the template: cp knowledge/communication-playbook.template.md knowledge/communication-playbook.md")
   else
-    WARNINGS+=("knowledge/communication-playbook.md does not exist. Create your voice playbook from 30+ sent emails. See FORK-GUIDE.md.")
+    WARNINGS+=("knowledge/communication-playbook.md does not exist. Create your voice playbook from your sent emails — /bootstrap phase 4 does it with you (manual: docs/start-here/fork-guide.md).")
   fi
 fi
 

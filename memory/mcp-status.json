@@ -1,0 +1,7 @@
+{
+  "status": "unconfigured",
+  "note": "Fresh install — no MCP probes recorded yet. Run /bootstrap (phase 5) or the session preamble to map your connectors, probe them, and replace this file.",
+  "last_probe_ts": null,
+  "probe_session": null,
+  "mcps": {}
+}

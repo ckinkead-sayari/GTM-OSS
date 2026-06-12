@@ -22,21 +22,25 @@ For the short version, start with [Quick Start](quick-start.md). This page is th
 ## Prerequisites
 
 - **Claude Code** (Max plan if you want scheduled tasks) or Claude Cowork
-- **GitHub account** (for your fork)
+- **GitHub account** — your instance lives in a **private** repo you create from this template
 - **macOS** for the host-side git-lock reaper (Linux works with a manual workaround)
-- **MCP connectors** for whatever tools you use (email, calendar, CRM, analytics, enterprise search)
-- **~30 minutes** for framework setup; **1–3 hours** for domain customization
+- **MCP connectors** for whatever tools you use (start small — see [Connect Your Stack](connect-your-stack.md))
+- **~30 minutes** for framework setup; `/bootstrap` builds the domain knowledge with you in another ~30–45
 
 ---
 
 ## Setup
 
-### 1. Clone your fork
+### 1. Create your private repo from the template
+
+Your instance accumulates client data from the first session — dossiers, pipeline, debriefs, analytics. **It must be private, and GitHub cannot make a fork of a public repo private — don't use the Fork button.**
 
 ```bash
-git clone git@github.com:ckinkead-sayari/GTM-OSS.git
-cd claudeGTM
+gh repo create my-gtm --private --clone --template https://github.com/ckinkead-sayari/GTM-OSS
+cd my-gtm
 ```
+
+Without `gh`: GitHub UI → **Use this template** → visibility **Private** → clone the repo you created. The SessionStart digest re-verifies your remote's visibility every session as a backstop.
 
 ### 2. Create your instance config
 
@@ -57,28 +61,17 @@ bash hooks/check-config.sh
 
 The script tells you which fields are still missing. Fix and re-run until green.
 
-### 3. Customize for your domain
+### 3. Build your knowledge files — run `/bootstrap`
 
-This is where the framework becomes your tool. See the full walkthrough:
+This is where the framework becomes your tool, and you shouldn't do it as homework. Open the workspace in Claude Code and run **`/bootstrap`**: Claude interviews you, researches your market and product, and writes `knowledge/domain-summary.md`, `knowledge/product-capabilities.md`, and `knowledge/communication-playbook.md` for you — then wires your tool routing and creates your first dossier stubs. Phases are skippable and resumable.
+
+Prefer the manual path, or want to understand what good looks like before generating it?
 
 → **[Customize for Your Domain](customize-for-your-domain.md)**
 
-Minimum viable setup (30–60 minutes):
+### 4. Your communication playbook (the part worth your attention)
 
-```bash
-cp knowledge/domain-summary.template.md knowledge/domain-summary.md
-cp knowledge/product-capabilities.template.md knowledge/product-capabilities.md
-```
-
-Then fill those in with your industry's pain points, regulatory drivers, buyer personas, and what your product actually does.
-
-### 4. Create your communication playbook
-
-```bash
-cp knowledge/communication-playbook.template.md knowledge/communication-playbook.md
-```
-
-Analyze ~30 of your sent emails to extract your voice — opening/closing patterns, email length by context, tone markers, phrases you never use. This is what makes drafted outreach sound like you.
+Whichever path you took, the voice file deserves real input: ~10–30 sent emails across contexts (cold, warm, post-call, negotiation). Claude extracts opening/closing patterns, length by context, tone markers, and the phrases you never use. This is what makes drafted outreach sound like you instead of like a model.
 
 Gitignored per fork. Stays personal.
 
@@ -94,16 +87,9 @@ Uninstall: `bash hooks/install-reaper.sh --uninstall`.
 
 ### 6. Connect your MCP tools
 
-Whichever you use. Edit `.claude/CLAUDE.md`'s Tool Routing table to reflect your actual setup. Typical MCPs:
+The routing table in `.claude/CLAUDE.md` works in capability *slots* (email, calendar, CRM, analytics, enterprise search, …). `/bootstrap` phase 5 maps your connectors into it and probes each one; the slot-by-slot reference — including the **minimum viable stack** (email + calendar + web search is a real day-one setup) and what degrades when a slot is empty — lives here:
 
-- Email (Gmail / Outlook / etc.)
-- Calendar (GCal / Outlook)
-- CRM (Salesforce / HubSpot / etc.)
-- Product analytics (Mixpanel / Amplitude / Heap)
-- Enterprise search (Glean / Coveo / native)
-- Chat (Slack / Teams)
-- Docs (Notion / Confluence / Google Docs)
-- Call recording / analysis (Gong / Chorus / Fathom)
+→ **[Connect Your Stack](connect-your-stack.md)**
 
 For scheduled tasks, MCPs need to be **Local** (not cloud / project-scoped) — cloud-scoped MCPs may not resolve reliably at task runtime.
 
@@ -148,20 +134,23 @@ Your domain knowledge files (`knowledge/domain-summary.md`, `knowledge/product-c
 
 ## Staying current with framework improvements
 
-If this kit came from an upstream repo and you want to pull future improvements to frameworks / hooks / docs:
+The upstream template keeps improving (frameworks, hooks, docs). Because you created your repo from the template, there's no fork relationship — add upstream as a remote once:
 
 ```bash
-git remote add upstream [upstream-repo-url]
+git remote add upstream https://github.com/ckinkead-sayari/GTM-OSS.git
 git fetch upstream
-git merge upstream/main --no-edit
+git merge upstream/main --allow-unrelated-histories --no-edit   # first time only; afterwards plain `git merge upstream/main`
 ```
 
-**Merge conflicts**:
-- `memory/*` or `accounts/*` → always keep your version (`git checkout --ours memory/ accounts/`)
-- `knowledge/*.md` (your domain files) → always keep your version
-- `knowledge/*.template.md` → review upstream changes, they may improve the template structure
-- `frameworks/*` → take upstream unless you've customized heavily
-- `.claude/CLAUDE.md` → three-way merge usually needed — your routing table vs. upstream structural improvements
+**Ownership zones — what's yours vs. shared:**
+
+| Zone | Files | On conflict |
+|------|-------|-------------|
+| Yours, always | `memory/*`, `accounts/*`, `.claude/MY-CONFIG.md`, `knowledge/*.md` (your built files) | Keep yours: `git checkout --ours <path>` |
+| Shared, take upstream | `frameworks/*`, `hooks/*`, `docs/*`, `knowledge/*.template.md` | Take upstream unless you customized deliberately — then re-apply your delta |
+| Merge by hand | `.claude/CLAUDE.md` | Your routing-table fills vs. upstream structural improvements — three-way merge, keep your tool names |
+
+Check the upstream changelog/commits before merging so you know what you're taking. If you've improved something shared, consider contributing it back — **from a clean clone, never from this working repo** (your git history contains client data; see CONTRIBUTING.md in the upstream repo).
 
 ---
 

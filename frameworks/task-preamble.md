@@ -4,24 +4,24 @@ Every scheduled task SKILL.md should reference this file for the coordination bo
 
 ## Setup (always run these)
 
-1. Run `bash /Users/YOUR-USERNAME/claudeGTM/hooks/git-safe.sh pull` to get latest state. `git-safe.sh` defensively clears stale `.git/index.lock` files (>5m old) and serializes git ops across concurrent tasks. If it exits with code 1, `.git/index.lock` is recent — another git op may be live; wait 60s and retry once, then abort with `task_blocked` if still locked.
-2. Read `/Users/YOUR-USERNAME/claudeGTM/.claude/CLAUDE.md` for system context.
+1. Run `bash /Users/ckinkead-sayari/GTM-OSS/hooks/git-safe.sh pull` to get latest state. `git-safe.sh` defensively clears stale `.git/index.lock` files (>5m old) and serializes git ops across concurrent tasks. If it exits with code 1, `.git/index.lock` is recent — another git op may be live; wait 60s and retry once, then abort with `task_blocked` if still locked.
+2. Read `/Users/ckinkead-sayari/GTM-OSS/.claude/CLAUDE.md` for system context.
 
 Task-specific additional reads (if any) are listed in the SKILL.md's own Setup section.
 
 ## Coordination
 
-**Upstream check:** Read last 10 lines of `/Users/YOUR-USERNAME/claudeGTM/memory/task-registry.jsonl`. Check upstream dependencies for data freshness. If any upstream is stale (>24h) or failed, set CONFIDENCE = DEGRADED for affected data and note it in output.
+**Upstream check:** Read last 10 lines of `/Users/ckinkead-sayari/GTM-OSS/memory/task-registry.jsonl`. Check upstream dependencies for data freshness. If any upstream is stale (>24h) or failed, set CONFIDENCE = DEGRADED for affected data and note it in output.
 
 **Retry policy:** If any MCP call fails, wait 60s and retry (max 2 retries with 60s/120s delays). If all retries fail, use fallback per `frameworks/task-coordination.md`. Log each MCP call outcome.
 
-**Trace logging:** Log `task_start` event to `/Users/YOUR-USERNAME/claudeGTM/memory/analytics.jsonl` at the beginning. Log `task_complete` (or `task_failed`) at the end with duration and key metrics. Use run_id format: `{task-abbrev}-{YYYYMMDD}`.
+**Trace logging:** Log `task_start` event to `/Users/ckinkead-sayari/GTM-OSS/memory/analytics.jsonl` at the beginning. Log `task_complete` (or `task_failed`) at the end with duration and key metrics. Use run_id format: `{task-abbrev}-{YYYYMMDD}`.
 
-**Task registry:** After completion, append a status record to `/Users/YOUR-USERNAME/claudeGTM/memory/task-registry.jsonl` with task name, status, timestamp, data_freshness date, and any errors.
+**Task registry:** After completion, append a status record to `/Users/ckinkead-sayari/GTM-OSS/memory/task-registry.jsonl` with task name, status, timestamp, data_freshness date, and any errors.
 
 ## Handoff format
 
-Append a one-line summary to `/Users/YOUR-USERNAME/claudeGTM/memory/handoff.jsonl` in this shape (source, action, output_id, and details are task-specific):
+Append a one-line summary to `/Users/ckinkead-sayari/GTM-OSS/memory/handoff.jsonl` in this shape (source, action, output_id, and details are task-specific):
 
 ```json
 {"source":"{task-name}","ts":"TIMESTAMP","action":"{task_action}","output_id":"{abbrev-YYYYMMDD}","account":"ACCOUNT_OR_ALL","contact":"EMAIL_OR_NA","state":"complete","details":"brief description"}
@@ -31,9 +31,9 @@ Append a one-line summary to `/Users/YOUR-USERNAME/claudeGTM/memory/handoff.json
 
 Always use `hooks/git-safe.sh` instead of raw `git` for scheduled tasks — it handles stale-lock cleanup and serializes concurrent writers:
 
-- `bash /Users/YOUR-USERNAME/claudeGTM/hooks/git-safe.sh add <specific files>` (not `add -A`)
-- `bash /Users/YOUR-USERNAME/claudeGTM/hooks/git-safe.sh commit -m "scheduled: {task-name} YYYY-MM-DD"`
-- `bash /Users/YOUR-USERNAME/claudeGTM/hooks/git-safe.sh push`
+- `bash /Users/ckinkead-sayari/GTM-OSS/hooks/git-safe.sh add <specific files>` (not `add -A`)
+- `bash /Users/ckinkead-sayari/GTM-OSS/hooks/git-safe.sh commit -m "scheduled: {task-name} YYYY-MM-DD"`
+- `bash /Users/ckinkead-sayari/GTM-OSS/hooks/git-safe.sh push`
 
 Exit-code handling: code 1 = live holder (wait 60s, retry once, then `task_blocked`); code 2 = serialization timeout (retry once after 60s, then `task_blocked`); code 3 = virtiofs EPERM (host reaper auto-resolves within ~10s — wait 15s and retry once); non-zero from git = log and proceed per retry policy.
 

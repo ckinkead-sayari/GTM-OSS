@@ -1,0 +1,33 @@
+# Lints the enforcement hooks on every change. The hooks are the hard layer
+# of the discipline model — a syntax error in one silently disables a gate.
+name: lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "hooks/**"
+      - ".github/workflows/lint.yml"
+  pull_request:
+    paths:
+      - "hooks/**"
+      - ".github/workflows/lint.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: bash syntax check
+        run: |
+          set -e
+          for f in hooks/*.sh; do
+            bash -n "$f"
+            echo "OK: $f"
+          done
+      - name: shellcheck (errors only)
+        run: shellcheck --severity=error hooks/*.sh

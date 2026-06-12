@@ -59,7 +59,26 @@ For each new objection, log it in this format under the right category:
 
 ## Catalog
 
-*Add objections below under the right category as you encounter them. Use the record template above.*
+*Add objections below under the right category as you encounter them. Use the record template above. One fictional worked example shows the format — replace it with your first real entry:*
+
+### "This costs more than our current data vendor" (FICTIONAL EXAMPLE — delete after your first real entry)
+
+**Category:** Price
+**Frequency:** Medium
+**Who says it:** IT Procurement (renewal/consolidation reviews)
+**Kill potential:** Medium — kills expansions more often than renewals
+
+**Response framework:**
+Never defend the line item. Reframe from price-per-seat to cost-per-outcome using THEIR volume: "At your January case volume, the question isn't the seat price — it's what a resolved case costs you each way." Then offer a measured comparison on their own closed cases.
+
+**Supporting evidence:**
+- Their own usage data (cases touched, hours per case) — the business case framework turns this into their numbers, not yours
+
+**What NOT to say:**
+Anything that accepts the commodity framing ("we're actually priced competitively...") — you've lost the moment you compare per-seat prices.
+
+**Source:** 2025-11, Northwind Insurance (fictional), consolidation review
+**Last updated:** 2026-01
 
 ## Patterns to Watch
 

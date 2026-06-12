@@ -1,86 +1,58 @@
 # Quick Start
 
-Five steps. Clone, configure, validate, install the host reaper, run your first session. ~15 minutes for the framework; 1–3 hours additional to fill in your domain knowledge (see step 3).
+Create a private repo, run one guided setup command, work your first account. ~15 minutes to a running system; ~45 minutes total once `/bootstrap` has built your knowledge files with you.
 
 Prerequisites:
 
 - macOS (Linux works but the host-side git-lock reaper is macOS-only — see [fork guide](fork-guide.md))
 - Claude Code or Claude Cowork
 - Git + bash + `lsof` installed (all default on macOS)
-- MCP connectors for whatever tools you use (email, calendar, CRM, analytics)
+- MCP connectors for whatever tools you use — start with just email + calendar; see [Connect Your Stack](connect-your-stack.md)
 
 ---
 
-## 1. Clone your fork
+## 1. Create your PRIVATE repo from the template
+
+Your working repo will contain client data within a week — dossiers, pipeline state, debriefs. It must be **private from birth**. GitHub cannot make a fork of a public repo private, so **do not use the Fork button**.
 
 ```bash
-git clone git@github.com:ckinkead-sayari/GTM-OSS.git
-cd claudeGTM
+gh repo create my-gtm --private --clone --template https://github.com/ckinkead-sayari/GTM-OSS
+cd my-gtm
 ```
 
-If you want to pull future framework improvements from an upstream repo:
+No `gh` CLI? On GitHub: **Use this template** → name it → visibility **Private** → clone yours.
 
-```bash
-git remote add upstream [upstream-repo-url]
-```
+The SessionStart digest re-checks your remote's visibility every session and warns loudly if working data is sitting in a public repo.
 
 ---
 
-## 2. Create your config
+## 2. Run `/bootstrap`
 
-Your personal data (accounts, tool/service IDs) lives in one file that stays in your fork.
+Open the folder as a Claude Code workspace, start a session, and run:
 
-```bash
-cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md
+```
+/bootstrap
 ```
 
-Open `.claude/MY-CONFIG.md` and fill in:
+A guided ~30–45 minute working session. You answer questions and paste raw material; Claude does the research and the writing:
 
-- **Who I Am** — name, role, territory, key accounts
-- **Tool / Service IDs** — only the tools you actually use; delete the rest
+1. **Identity** → `.claude/MY-CONFIG.md` (who you are, accounts, tools)
+2. **Domain knowledge** → `knowledge/domain-summary.md` (interview + market research, one page)
+3. **Product truth** → `knowledge/product-capabilities.md` (researched from your site, corrected by you — including what the product does NOT do)
+4. **Your voice** → `knowledge/communication-playbook.md` (extracted from ~10–30 of your sent emails; gitignored, stays personal)
+5. **Stack wiring** → routing table rewritten for your actual MCPs, connections probed
+6. **First dossiers** → stubs for your top 3 accounts
 
-Validate:
-
-```bash
-bash hooks/check-config.sh
-```
-
-Expected: `CONFIG CHECK PASSED`. If anything is missing, the script tells you which field.
+Every phase is skippable and resumable — `/bootstrap` again later picks up what's missing. Prefer doing it by hand? [Customize for Your Domain](customize-for-your-domain.md) is the manual path.
 
 ---
 
-## 3. Customize for your domain
-
-This is where the framework becomes your tool. You can start with a basic setup and iterate — don't try to fill everything in on day one.
-
-Minimum viable setup (30–60 minutes):
-
-```bash
-cp knowledge/domain-summary.template.md knowledge/domain-summary.md
-cp knowledge/product-capabilities.template.md knowledge/product-capabilities.md
-cp knowledge/communication-playbook.template.md knowledge/communication-playbook.md
-```
-
-Then fill those in. See [Customize for Your Domain](customize-for-your-domain.md) for the full walkthrough and a verification checklist.
-
-Without this step, Claude will produce generic GTM output. With it, Claude sounds like someone who knows your industry, your product, and your voice.
-
----
-
-## 4. Install the host-side git-lock reaper (macOS)
+## 3. Install the host-side git-lock reaper (macOS)
 
 Cowork sessions write files via virtiofs, and the sandbox can't `unlink` its own `.git/index.lock` after a commit. Without the reaper, session-end commits may need manual cleanup.
 
 ```bash
 bash hooks/install-reaper.sh
-```
-
-Expected output:
-
-```
-[install-reaper] Rendering plist (paths -> /path/to/your/clone) -> ~/Library/LaunchAgents/com.claudegtm.git-reaper.plist
-[install-reaper] Bootstrapping LaunchAgent...
-[install-reaper] Installed and running.
 ```
 
 Verify:
@@ -89,32 +61,39 @@ Verify:
 launchctl list | grep claudegtm-git-reaper
 ```
 
-The reaper polls every 10 seconds, touches only `~/claudeGTM/.git/index.lock`, respects live holders and mid-op state (merge/rebase/cherry-pick), and logs every reap to `memory/reap-log.jsonl`.
-
-Uninstall any time with `bash hooks/install-reaper.sh --uninstall`.
+The reaper polls every 10 seconds, touches only your repo's `.git/index.lock`, respects live holders and mid-op state (merge/rebase/cherry-pick), and logs every reap to `memory/reap-log.jsonl`. Uninstall any time with `bash hooks/install-reaper.sh --uninstall`.
 
 ---
 
-## 5. First session
+## 4. Watch one session, then run one
 
-Open Claude Code (or Cowork), load this folder as your workspace, and let the preamble run. On session start Claude will:
+Read [An Example Session](example-session.md) — five minutes, shows the whole loop: the digest, the research gate refusing to draft cold, the quality hook blocking banned language, the debrief that persists, the end-session commit.
 
-1. Run `bash hooks/check-config.sh` — should pass.
-2. Load your `MY-CONFIG.md` into working memory.
-3. Read `memory/active-context.md` — priorities, pipeline state, open actions (empty on a fresh fork).
-4. Read `TODOS.md` and the last 20 lines of `memory/handoff.jsonl`.
-5. Scan for stale data.
-6. Announce your identity, current priorities, and anything flagged.
+Then run the real thing on ONE account:
 
-On a fresh fork, Claude will say there's no session history yet and recommend starting with one account at a time.
+- **"Research [account]."** External research lands in `accounts/[account].md`, not in chat history.
+- **"Draft outreach to [contact] at [account]."** The hooks force research first, warm-path check, your voice, the quality gate.
+- **After a call: "debrief the [account] call."** Seven points, appended to the dossier, objections logged.
+- **"End session."** Context rolls forward, analytics written, committed, pushed.
+
+---
+
+## Your first two weeks
+
+The system pays off through accumulation, not on day one. The arc that works:
+
+| When | Do | Why |
+|------|----|----|
+| Day 1 | `/bootstrap` + read the example session | System configured, loop understood |
+| Days 2–5 | Work 1–2 real accounts through the full loop daily | Dossiers start compounding; your voice file gets corrected by use |
+| Day 5 | Say **"retro"** | First weekly retro — runs on your real analytics, shows what the logging was for |
+| Week 2 | Add CRM/analytics MCPs if you skipped them; open renewals/expansion work | Pipeline sync + health signals come alive |
+| When manual toil appears | Add ONE scheduled task (e.g. daily briefing) | Automation earns its place; don't start with ten |
+
+Two habits make or break it: **end every session with "end session"** (unsaved context is deleted context), and **never let a debrief live only in chat**.
 
 ---
 
 ## What happens next
 
-- **Work an account.** Ask Claude to "research [account name]" — it will run external research, log findings to `accounts/[name].md`, and flag competitive / regulatory signals.
-- **Draft outreach.** Ask Claude to "draft a cold email to [contact] at [account]." The framework hook forces reading `frameworks/outreach.md` and `knowledge/domain-summary.md` first; the research hook forces a research log to exist first; the quality hook catches banned language.
-- **Debrief calls.** After a call, Claude writes a 7-point debrief to `accounts/[account].md`, logs objections, drafts the follow-up.
-- **End the session.** Say "end session." Claude rolls `active-context.md` forward, logs analytics, commits, pushes.
-
-See [Introduction](introduction.md) for the operating philosophy, or jump to [Fork Guide](fork-guide.md) for role-specific setup (AM vs CS), MCP connectors, and optional scheduled tasks.
+See [Introduction](introduction.md) for the operating philosophy, [Fork Guide](fork-guide.md) for the full setup detail (role-specific config, scheduled tasks, staying current with upstream), and [Connect Your Stack](connect-your-stack.md) for the MCP slot map.

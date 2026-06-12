@@ -28,8 +28,21 @@ if [ ! -f "$STATUS_FILE" ]; then
   echo "MCP CHECK FAILED — memory/mcp-status.json does not exist."
   echo ""
   echo "Claude should probe MCPs at session start and write this file."
-  echo "See .claude/CLAUDE.md → 'Session Preamble' step 0.5."
+  if [ -f "$REPO_ROOT/.claude/commands/bootstrap.md" ]; then
+    echo "Fresh instance? /bootstrap (phase 5) maps and probes your MCPs and writes it."
+  else
+    echo "See .claude/CLAUDE.md → 'Session Preamble' step 0.5."
+  fi
   exit 1
+fi
+
+# Fresh-install seed: the kit ships mcp-status.json with an explicit
+# "unconfigured" marker. That's setup-pending, not failure — don't open a
+# brand-new forker's first digest with FAILED.
+if grep -q '"status"[[:space:]]*:[[:space:]]*"unconfigured"' "$STATUS_FILE"; then
+  echo "MCP CHECK — setup pending (no probes recorded yet)."
+  echo "Run /bootstrap (phase 5) or the session preamble to map and probe your MCP connectors."
+  exit 0
 fi
 
 python3 - "$STATUS_FILE" "$MAX_AGE_HOURS" <<'PY'

@@ -15,7 +15,7 @@ Everything in this file is **policy** — how to operate, not what currently is.
 
 ## Who I Am
 
-Loaded from `.claude/MY-CONFIG.md` at session start: identity, territory, account list, service IDs. If missing: `cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md`, then validate with `bash hooks/check-config.sh`.
+Loaded from `.claude/MY-CONFIG.md` at session start: identity, territory, account list, service IDs. If missing — or if the knowledge files are still unbuilt templates — run `/bootstrap` (guided setup: interview + research, Claude writes the files). Manual fallback: `cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md`, then validate with `bash hooks/check-config.sh`.
 
 ## How I Work
 
@@ -60,7 +60,7 @@ The weekly retro mines these — skipped logging means blind retros.
 
 ## Task Routing
 
-Read the listed files BEFORE producing. Log `framework_used` after. Fill in the tool column for your MCP setup (see `docs/start-here/customize-for-your-domain.md`).
+Read the listed files BEFORE producing. Log `framework_used` after. Bracketed tool slots (`[your CRM MCP]`, …) are filled in by `/bootstrap` phase 5 — slot reference and degraded-mode guidance: `docs/start-here/connect-your-stack.md`. A slot marked `— (manual)` means do that task's data step by hand; don't silently skip the task.
 
 | Task | Read first / Use |
 |------|------------------|
@@ -123,4 +123,6 @@ Read the listed files BEFORE producing. Log `framework_used` after. Fill in the 
 | Backlog | `TODOS.md` · Version: `VERSION` |
 | Hook specs | `docs/reference/hooks.md` + each script's header in `hooks/` |
 | Session state | `memory/active-context.md` · `memory/handoff.jsonl` |
-| Your vertical (build these) | `knowledge/domain-summary.md` · `knowledge/product-capabilities.md` · `knowledge/communication-playbook.md` (from templates — see `knowledge/README.md` + `docs/start-here/customize-for-your-domain.md`) |
+| Your vertical (build these) | `knowledge/domain-summary.md` · `knowledge/product-capabilities.md` · `knowledge/communication-playbook.md` (via `/bootstrap`, or manually from templates — see `knowledge/README.md` + `docs/start-here/customize-for-your-domain.md`) |
+| Tool slots / MCP setup | `docs/start-here/connect-your-stack.md` |
+| The full loop, worked example | `docs/start-here/example-session.md` · `accounts/EXAMPLE-northwind-insurance.md` (both fictional) |

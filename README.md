@@ -35,21 +35,27 @@ Every session starts cold.               Context compounds. Each session leaves
 | `frameworks/` | 19 task playbooks: outreach, sequences, business case, champion doc, objections, call debrief, expansion/QBR, multi-threading, onboarding, retro, account dossier, … |
 | `hooks/` | 13 enforcement scripts. Three are **wired into Claude Code's hook system** and run automatically: a SessionStart digest (config, git state, staleness, P0 age), a SessionEnd marker (catches sessions that die with uncommitted work), and a PreToolUse gate that **blocks email drafts containing banned language** before they reach your drafts folder. |
 | `memory/` | The continuity model: rolling active context (3-session lookback), append-only analytics + handoff logs, MCP health probes. |
-| `.claude/` | The operating instructions (policy-only, ~15KB) plus `/preamble` and `/end-session` slash commands — the two session rituals, one keystroke each. |
+| `.claude/` | The operating instructions (policy-only, ~15KB) plus three slash commands: `/bootstrap` (guided first-run setup — Claude writes your knowledge files for you), `/preamble` and `/end-session` (the two session rituals). |
 | `knowledge/` | Templates for your domain knowledge, product capabilities, and communication voice. You fill these in; the system reads them before every relevant task. |
 | `accounts/` | One dossier per key account with append-only Activity Log discipline — research compounds instead of evaporating. |
 | Scheduled tasks | An optional catalog (usage sync, briefings, pipeline staleness checks, weekly retro, …) for the Claude Code Desktop app. Start with zero; add when you feel manual-toil pain. |
 | Git infrastructure | A lock-safe git wrapper + host-side reaper, hardened by several documented production postmortems (`ARCHITECTURE.md`). |
 
-## Quick start (~15 minutes)
+## Quick start (~15 minutes to running, ~45 with your knowledge built)
+
+> **⚠️ Your copy must be PRIVATE.** Within a week this repo holds your account dossiers, pipeline state, and call debriefs — client data. GitHub cannot make a fork of a public repo private, so **don't use the Fork button**. Create a private repo from the template instead:
 
 ```bash
-git clone git@github.com:ckinkead-sayari/GTM-OSS.git && cd GTM-OSS
-cp .claude/MY-CONFIG.template.md .claude/MY-CONFIG.md   # fill in who you are
-bash hooks/check-config.sh                              # tells you what's missing
+# one command, private from birth (this repo is a GitHub template):
+gh repo create my-gtm --private --clone --template https://github.com/ckinkead-sayari/GTM-OSS
+cd my-gtm
 ```
 
-Then open the folder as a Claude Code workspace and start a session — the SessionStart hook prints a digest and the preamble takes it from there. Full walkthrough: [Quick Start](docs/start-here/quick-start.md) · [Fork Guide](docs/start-here/fork-guide.md).
+(No `gh`? GitHub UI → **Use this template** → set visibility **Private** → clone yours.)
+
+Then open the folder as a Claude Code workspace and run **`/bootstrap`** — a guided ~30-minute session where Claude interviews you, researches your market and product, writes your knowledge files, wires your tool routing, and creates your first account dossiers. The SessionStart digest and preamble take it from there every session after.
+
+Full walkthrough: [Quick Start](docs/start-here/quick-start.md) · [Fork Guide](docs/start-here/fork-guide.md) · **[An Example Session](docs/start-here/example-session.md)** (watch the whole loop run before you commit to anything).
 
 ## What you bring
 
@@ -58,9 +64,9 @@ The kit ships the framework; the value comes from what you encode:
 - **Your vertical** — `knowledge/domain-summary.md` (pain points, regulatory drivers, competitive landscape, buyer personas — from the template)
 - **Your product** — `knowledge/product-capabilities.md` (what it actually does, so Claude never overclaims)
 - **Your voice** — `knowledge/communication-playbook.md` (analyze ~30 of your sent emails; outreach then sounds like you, not like AI)
-- **Your accounts** — `accounts/*.md`, built up as you research
+- **Your accounts** — `accounts/*.md`, built up as you research (a fictional worked example ships at `accounts/EXAMPLE-northwind-insurance.md` so you can see what a dossier looks like after a few sessions)
 
-Walkthrough: [Customize for your domain](docs/start-here/customize-for-your-domain.md).
+`/bootstrap` builds the first three with you in one guided session. Manual walkthrough, if you prefer it: [Customize for your domain](docs/start-here/customize-for-your-domain.md).
 
 ## The enforcement model
 
