@@ -23,6 +23,15 @@ The tools are swappable (Apollo, Clay, Sales Navigator exports); the principle i
 - **License check.** Extension-based exporters (e.g. ZoomInfo) need an active license — confirm access before building the habit.
 - Claude can assist the batch: drive profile navigation and post-export verification (contact present in the sequencer, correct account) via browser automation — see `knowledge/chrome-automation-patterns.md`.
 
+## Flow Launch Hygiene
+
+Sequencer-side mechanics (Gong Engage, Outreach, Apollo — same principles everywhere) that protect deliverability and credibility. A broken placeholder or a bounced send reads as mail-merge spam, and the contact rarely tells you — they just don't reply.
+
+1. **First step manual, not automated.** A personalized, hand-sent first email helps bypass spam filters and establishes the sending domain as a credible sender — which lifts open and engagement rates on every automated step that follows. Personalize from research (their role, their problem, something they published — see Cold Email Copy Rules), not manufactured familiarity.
+2. **Filter dead and opted-out contacts before launch.** Bounces hurt domain reputation; emailing opt-outs is a compliance problem. Keep standing filters in every saved people view — contact stage is NOT Dead, email-opt-out is false — so hygiene is the default, not a per-launch chore.
+3. **Placeholder discipline.** Auto-fill fields (`{{recipient.first_name}}`, `{{recipient.company_name}}`, `{{recipient.job_title}}`, sender scheduling link) pull from the CRM — never hand-paste what a field can fill; a wrong-name slip costs more credibility than auto-fill saves time. Use single-bracket placeholders (`{reference their recent initiative}`) as manual-personalization reminders — they do NOT auto-fill and must be resolved by hand before launch.
+4. **Preview against a real contact before every launch.** Render each template as a specific CRM contact will receive it. Sequencers mark valid placeholders one way and broken ones another (in Gong Engage: purple underline = valid, red = broken — typo in the field name or a missing bracket). A red underline or a surviving `{...}` reminder is a launch blocker, not a note.
+
 ## Sequence Types
 
 ### Cold Outbound (5 steps, 21 days)
@@ -62,6 +71,26 @@ For contacts met at conferences, webinars, or events. The lead-response-scanner 
 | 3 | 10 | Meeting ask — propose a focused call on their specific use case | 3 sentences. Specific and low-commitment. |
 
 Exit conditions: Same as cold. Must reference the specific event and conversation.
+
+### Event Registration Drive (pre-event, T-14 → event day)
+
+Push registrations for a webinar or event to named accounts. Different motion from Event Follow-Up (which is post-event): time-boxed, list-driven, attribution-sensitive.
+
+| Step | Timing | Purpose |
+|------|--------|---------|
+| 1 | T-14 | Build the target list from the CRM (unregistered relevant contacts at your accounts — use the campaign's standing report if one exists) and load it into the event flow. |
+| 2 | T-10 | Personal invite — why THIS session matters to THEIR current problem, 3-4 sentences. The event is the value; don't pitch product. |
+| 3 | T-5 | Reminder to non-registrants with one concrete hook from the agenda (speaker, dataset, the specific question the session answers). |
+| 4 | Event +1 | Registrants/attendees switch to Event Follow-Up; non-registrants exit quietly — no guilt emails. |
+
+Rules (learned from running these as team blitzes):
+
+- **Use the campaign's credited registration link verbatim.** Tracked links determine whether your outreach gets attribution for the registrant — substituting a generic URL erases your sourcing credit.
+- **Dedupe across teams before launch.** Filter by account ownership/type so two owners don't hit the same contact in the same week.
+- **Blitz beats drip.** A focused block (list-build hour → outreach sprint → short retro) outperforms ad-hoc sends spread across two weeks.
+- **Watch registrations-by-source mid-flight** — it tells you whether the push is working while there's still time to adjust.
+
+Exit conditions: Registered → switch to Event Follow-Up post-event. Replied without registering → handle personally, exit the drive.
 
 ### Renewal Prep (4 steps, 120→30 days before renewal)
 
@@ -223,6 +252,7 @@ Uses the **lower bound** of the ±8 confidence band (conservative — avoids fal
 | Concentration risk > 60% + no active multi-threading play | Multi-Threading Play (`frameworks/multi-threading.md`) | Lagging (concentration sub-metric) |
 | Competitor mentioned in Gong transcript | Competitive Defense (champion reinforcement) | Context (competitive sub-metric) |
 | Contact from event with no follow-up within 48 hours | Event Follow-Up | N/A |
+| Hosted event/webinar inside 14 days + unregistered target contacts | Event Registration Drive | N/A |
 | New contact at target account, no prior relationship | Cold Outbound | N/A |
 | Prior contact gone cold > 60 days | Warm Reactivation | N/A |
 
