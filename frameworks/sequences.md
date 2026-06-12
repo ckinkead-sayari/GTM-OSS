@@ -4,6 +4,25 @@
 
 Multi-touch outreach sequences for contacts who are not current customers or haven't been engaged. Each sequence type has a defined cadence, messaging arc, and exit conditions.
 
+## Sourcing Contacts Into Sequences
+
+The biggest friction in prospecting isn't writing emails — it's the dead time between finding a contact and having them sequenced: locate them on LinkedIn, create them in the CRM by hand, wait for sync, find them again in the sequencing tool. Collapse that gap to seconds with a browser-extension connector, and batch the work.
+
+**Reference workflow (ZoomInfo Chrome Extension → Salesforce → Gong Engage):**
+
+1. Open the contact's profile on LinkedIn or Sales Navigator. In the ZoomInfo Chrome Extension, click **Export** and select the associated Account/Opportunity — this creates the contact in the CRM, parented to the right account, in one click.
+2. Go to Gong Engage → **People** tab → refresh. The new contact appears at the top of the list, ready to add to a flow immediately.
+
+The tools are swappable (Apollo, Clay, Sales Navigator exports); the principle is not: one click from profile to CRM, zero manual re-entry, contact parented to the correct account/opportunity so attribution and reporting hold.
+
+**Rules:**
+
+- **Batch it.** A single ~30-minute focused block can source ~25 new contacts. Don't source one-at-a-time between other work — context switching eats the time the workflow saves.
+- **Route on entry.** New contacts enter through the Health Score → Sequence Type mapping below (new contact at target account → Cold Outbound; met at event → Event Follow-Up; cold > 60 days → Warm Reactivation).
+- **Sourcing ≠ permission to send.** Research-before-outreach (Messaging Rule 7) still gates step 1 — adding a contact to a flow fast doesn't mean sequencing them blind.
+- **License check.** Extension-based exporters (e.g. ZoomInfo) need an active license — confirm access before building the habit.
+- Claude can assist the batch: drive profile navigation and post-export verification (contact present in the sequencer, correct account) via browser automation — see `knowledge/chrome-automation-patterns.md`.
+
 ## Sequence Types
 
 ### Cold Outbound (5 steps, 21 days)
