@@ -15,7 +15,7 @@ For the short version, start with [Quick Start](quick-start.md). This page is th
 - Session continuity that picks up where the last conversation ended
 - Optional: 10 scheduled-task patterns (usage sync, daily briefing, call prep, lead scanning, sequences, pipeline sync, renewal tracker, staleness checks, retro)
 
-**What you're NOT getting:** domain knowledge, product knowledge, competitive positioning. Those are specific to your industry and your product. The kit ships templates + a customization guide for filling them in.
+**What you're NOT getting:** domain knowledge, product knowledge, competitive positioning. Those are specific to your industry and your product. `/bootstrap` builds them with you — or, if a teammate already runs this system, [Team Adoption](team-adoption.md) imports theirs. Questions a new user actually asks (data safety, cost, "I'm not technical"): [FAQ & Glossary](faq.md).
 
 ---
 

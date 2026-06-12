@@ -97,6 +97,38 @@ Next session's preamble reads all of it back in. Nothing was lost; the dossier g
 
 ---
 
+## The whole session as one diagram
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor You
+    participant C as Claude
+    participant H as Hooks
+    participant W as Web/MCPs
+    participant D as Dossier + memory
+
+    Note over C,H: SessionStart — digest prints config/MCP/git/staleness
+    You->>C: "Draft an email to Priya about the demo"
+    C->>H: research gate — logged account_research for Northwind?
+    H-->>C: not yet → research first
+    C->>W: web search (COO town hall, DOI exam)
+    C->>D: append finding + log account_research
+    C->>W: email history — warm path exists?
+    W-->>C: yes (Dana's forwarded thread)
+    C->>H: draft v1 → outbound quality gate
+    H-->>C: BLOCKED — banned term "seamless"
+    C->>H: draft v2 (specific, 4 sentences)
+    H-->>C: pass
+    C->>W: create DRAFT (never send)
+    You->>C: "debrief the Priya call"
+    C->>D: append 7-point debrief + log call_debriefed
+    You->>C: "end session"
+    C->>D: roll active-context, analytics, handoff
+    C->>D: commit + push
+    Note over You,D: Next session's preamble reads everything back
+```
+
 ## Why this matters
 
 Run that loop 3–4 times a week and the system's value stops being the drafting — it's that **Claude argues with you from your own accumulated evidence**: the dormant seats, the COO's metric, the procurement deadline. That's what a fresh chat can never do.

@@ -76,7 +76,11 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
 
@@ -98,8 +102,10 @@ nav:
       - Introduction: start-here/introduction.md
       - Fork Guide: start-here/fork-guide.md
       - An Example Session: start-here/example-session.md
+      - Team Adoption: start-here/team-adoption.md
       - Connect Your Stack: start-here/connect-your-stack.md
       - Customize for Your Domain: start-here/customize-for-your-domain.md
+      - FAQ & Glossary: start-here/faq.md
   - Concepts:
       - The Preamble: concepts/the-preamble.md
       - The Frameworks: concepts/the-frameworks.md

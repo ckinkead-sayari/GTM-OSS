@@ -2,6 +2,22 @@
 
 Instructions in a prompt are polite suggestions. Under time pressure, Claude will skip the research, skim the framework, or reach for banned marketing vocabulary. The hooks in `hooks/` make the skip impossible.
 
+Where the gates sit in one outbound task:
+
+```mermaid
+flowchart LR
+    T([task: outreach]) --> G1{{check-framework<br/>playbook read?}}
+    G1 --> G2{{check-research<br/>account_research logged<br/>this session?}}
+    G2 --> DRAFT[draft written]
+    DRAFT --> G3{{check-outbound-quality<br/>PreToolUse — banned language,<br/>structure, length}}
+    G3 -- blocked --> DRAFT
+    G3 -- pass --> OUT([draft lands in email tool])
+    SS{{session-start digest}} -.before any of this.-> T
+    SE{{session-end marker}} -.if you bail without closing.-> LOG[(handoff.jsonl)]
+```
+
+Three of these run mechanically via Claude Code's hook system (digest, end-marker, outbound gate); the rest are invoked by the protocols. The point is placement: each gate sits where skipping it would otherwise be invisible.
+
 ## The hooks
 
 ### `hooks/check-config.sh`

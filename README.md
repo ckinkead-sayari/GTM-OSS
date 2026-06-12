@@ -55,7 +55,17 @@ cd my-gtm
 
 Then open the folder as a Claude Code workspace and run **`/bootstrap`** — a guided ~30-minute session where Claude interviews you, researches your market and product, writes your knowledge files, wires your tool routing, and creates your first account dossiers. The SessionStart digest and preamble take it from there every session after.
 
-Full walkthrough: [Quick Start](docs/start-here/quick-start.md) · [Fork Guide](docs/start-here/fork-guide.md) · **[An Example Session](docs/start-here/example-session.md)** (watch the whole loop run before you commit to anything).
+**Joining a team that already runs this?** Import your team's knowledge files instead of building your own — [Team Adoption](docs/start-here/team-adoption.md) makes the second person productive on day one.
+
+```mermaid
+flowchart LR
+    S1([Session 1<br/>research + draft]) --> M1[(dossiers +<br/>memory)]
+    M1 --> S2([Session 5<br/>'continue the account'])
+    S2 --> M2[(richer<br/>memory)]
+    M2 --> S3([Session 20<br/>Claude flags the renewal risk<br/>before you ask])
+```
+
+Full walkthrough: [Quick Start](docs/start-here/quick-start.md) · [Fork Guide](docs/start-here/fork-guide.md) · **[An Example Session](docs/start-here/example-session.md)** (watch the whole loop run before you commit to anything) · [FAQ & Glossary](docs/start-here/faq.md).
 
 ## What you bring
 

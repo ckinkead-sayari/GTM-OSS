@@ -22,7 +22,11 @@ cd my-gtm
 
 No `gh` CLI? On GitHub: **Use this template** → name it → visibility **Private** → clone yours.
 
+**Terminal-averse?** That's fine — open Claude Code, paste this page, and say "do the quick start for me." Every command in these docs is something Claude can run on your behalf; your job is the judgment, not the typing. (More reassurance: [FAQ](faq.md), first question.)
+
 The SessionStart digest re-checks your remote's visibility every session and warns loudly if working data is sitting in a public repo.
+
+**Joining a team that already runs this?** Stop here and read [Team Adoption](team-adoption.md) first — you'll import your team's knowledge files instead of building your own, and `/bootstrap` becomes a 15-minute localize instead of a 45-minute build.
 
 ---
 
@@ -78,19 +82,21 @@ Then run the real thing on ONE account:
 
 ---
 
-## Your first two weeks
+## Your ramp: 30 / 60 / 90, compressed
 
-The system pays off through accumulation, not on day one. The arc that works:
+Sales-onboarding research is consistent: structured ramps with competency gates beat activity quotas, and the "learn" phase is what good knowledge transfer compresses. This system's version — each phase has an *evidence gate* you can check in your own files, not a feeling:
 
-| When | Do | Why |
-|------|----|----|
-| Day 1 | `/bootstrap` + read the example session | System configured, loop understood |
-| Days 2–5 | Work 1–2 real accounts through the full loop daily | Dossiers start compounding; your voice file gets corrected by use |
-| Day 5 | Say **"retro"** | First weekly retro — runs on your real analytics, shows what the logging was for |
-| Week 2 | Add CRM/analytics MCPs if you skipped them; open renewals/expansion work | Pipeline sync + health signals come alive |
-| When manual toil appears | Add ONE scheduled task (e.g. daily briefing) | Automation earns its place; don't start with ten |
+| Phase | Do | Evidence gate (you can verify this) |
+|-------|----|--------------------------------------|
+| **Day 1** | `/bootstrap` (or [Team Adoption](team-adoption.md) import) + read the example session | Knowledge files exist and pass the "positioning in one sentence" test |
+| **Days 2–7: Learn by doing** | Work 1–2 real accounts through the full loop daily; say **"retro"** on day 5 | Every worked account has a dossier with dated Activity Log entries; first retro runs on real analytics |
+| **Days 8–30: Apply** | Full account book in; CRM/analytics MCPs connected; objection catalog gets its first real entries | Pipeline table in `active-context.md` matches your CRM; ≥3 objections logged with responses |
+| **Days 31–60: Accelerate** | Renewal/expansion frameworks in play; one scheduled task if manual toil appeared | Expansion signals logged; retro shows week-over-week activity you didn't hand-count |
+| **Days 61–90: Compound** | The system starts arguing back — stale threads, concentration risk, renewal windows flagged unprompted | You catch yourself saying "right, I forgot about that" to your own tooling |
 
-Two habits make or break it: **end every session with "end session"** (unsaved context is deleted context), and **never let a debrief live only in chat**.
+(Honest arithmetic from the research: if your sales cycle is 6 months, day 90 won't show a closed-won — but it will show a pipeline you can defend line-by-line.)
+
+Two habits make or break all of it: **end every session with "end session"** (unsaved context is deleted context), and **never let a debrief live only in chat**.
 
 ---
 

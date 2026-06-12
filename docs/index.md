@@ -1,65 +1,82 @@
 # claudeGTM
 
-**Stop starting from zero. Persistent context and enforced discipline for GTM work with Claude.**
+**Stop starting from zero.** Persistent context and enforced discipline for GTM work with Claude.
 
-A forkable operating system for account managers and CS reps running deep-account GTM work with Claude Code (or Cowork). Gives every Claude session your account context, your voice, your frameworks, and your pipeline state — so each conversation picks up where the last one stopped instead of starting over.
-
----
-
-## The problem
-
-```
-Without claudeGTM                        With claudeGTM
-───────────────────                      ──────────────
-Session 1: Research account              Session 1: Research account
-           Draft outreach                          Draft outreach
-           Send, done                              Log debrief + update context
-                                                   Framework + quality hooks enforce
-Session 2: Research account (again)      Session 2: "Continue [account]"
-           Guess what you said last time           → Reads active-context
-           Draft different email                    → Loads domain knowledge
-                                                   → Knows warm path exists
-                                                   Drafts on-voice reply in 2 min
-
-Every session starts cold.               System compounds. Each session leaves
-                                         Claude smarter than it found it.
-```
-
-Without the repo, Claude has no memory of your accounts, your voice, or what you decided yesterday. With it, your pipeline state, framework discipline, and institutional knowledge survive across sessions.
+A forkable operating system for account managers, sellers, and CS reps doing deep-account work with Claude Code (or Cowork). Every session gets your account context, your voice, your frameworks, and your pipeline state — so each conversation picks up where the last one stopped instead of starting over.
 
 ---
+
+## Choose your path
+
+| You are… | Start with |
+|----------|-----------|
+| **New, want it working today** | [Quick Start](start-here/quick-start.md) → run `/bootstrap` → you're drafting researched, on-voice outreach within the hour |
+| **Joining a team that already runs this** | [Team Adoption](start-here/team-adoption.md) — import your team's knowledge files instead of building from scratch. Day-one productivity is the whole point |
+| **Want to see it before installing anything** | [An Example Session](start-here/example-session.md) — the full loop in 5 minutes of reading, including the hooks blocking bad work |
+| **Evaluating / want the philosophy first** | [Introduction](start-here/introduction.md) + the Concepts section below |
+| **Not an engineer, slightly terminal-averse** | Good news: [FAQ, first question](start-here/faq.md). Claude runs the commands; you bring the judgment |
+
+## How it works
+
+One loop, four moving parts: policy routes the task, frameworks + your knowledge shape the work, hooks gate the output, and everything worth keeping is appended where the *next* session will read it.
+
+```mermaid
+flowchart TB
+    U([You: 'draft outreach to Dana at Northwind']) --> R{CLAUDE.md<br/>task routing}
+    R --> F[frameworks/outreach.md<br/>the playbook]
+    R --> K[knowledge/<br/>your domain · product · voice]
+    R --> A[accounts/northwind.md<br/>the dossier]
+    F & K & A --> W[Claude works:<br/>research → warm-path check → draft]
+    W --> G{{hooks: research done?<br/>banned language? quality gate}}
+    G -- blocked --> W
+    G -- pass --> O([Draft in your email tool<br/>— you review & send])
+    W -. findings, debrief, objections .-> A
+    W -. events .-> M[memory/analytics.jsonl<br/>+ active-context.md]
+    M ==>|next session's preamble reads it all back| R
+```
+
+The compounding is the product: each session leaves Claude measurably smarter about your book than it found it.
+
+```mermaid
+flowchart LR
+    S1([Session 1<br/>research + draft]) --> M1[(memory +<br/>dossiers)]
+    M1 --> S2([Session 5<br/>'continue Northwind'])
+    S2 --> M2[(richer memory)]
+    M2 --> S3([Session 20<br/>Claude flags the renewal risk<br/>before you ask])
+```
 
 ## Start Here
 
-- **[Quick Start](start-here/quick-start.md)** — 5 hands-on steps. Clone, configure, validate, install, run first session. ~15 minutes.
-- **[Customize for Your Domain](start-here/customize-for-your-domain.md)** — fill in your industry + product + voice so Claude sounds like someone who knows your space.
-- **[Introduction](start-here/introduction.md)** — the operating philosophy. Research first, warm first, consultant tone, see something say something.
-- **[Fork Guide](start-here/fork-guide.md)** — full setup with role-specific guidance, MCP connectors, optional scheduled tasks.
+- **[Quick Start](start-here/quick-start.md)** — private repo → `/bootstrap` → first session. ~15 minutes to running.
+- **[An Example Session](start-here/example-session.md)** — watch the whole loop run, hooks and all, before you commit to anything.
+- **[Team Adoption](start-here/team-adoption.md)** — onboarding the second (and tenth) person on a team.
+- **[Connect Your Stack](start-here/connect-your-stack.md)** — MCP slot map, the minimum viable stack, what degrades without each tool.
+- **[Customize for Your Domain](start-here/customize-for-your-domain.md)** — the manual path to the knowledge files (or just run `/bootstrap`).
+- **[FAQ & Glossary](start-here/faq.md)** — data safety, costs, "I'm not technical," and every term defined.
+- **[Fork Guide](start-here/fork-guide.md)** — the full setup walkthrough, staying current with upstream, troubleshooting.
+- **[Introduction](start-here/introduction.md)** — the operating philosophy.
 
 ## Concepts
 
-- **[The Preamble](concepts/the-preamble.md)** — What Claude does in the first 30 seconds of every session.
-- **[The Frameworks](concepts/the-frameworks.md)** — Task-to-file routing. Why Claude reads before writing.
-- **[Enforcement Hooks](concepts/enforcement-hooks.md)** — How discipline is enforced, not just suggested.
-- **[Accretive Knowledge](concepts/accretive-knowledge.md)** — Why the system gets smarter over time.
+- **[The Preamble](concepts/the-preamble.md)** — what Claude does in the first 30 seconds of every session.
+- **[The Frameworks](concepts/the-frameworks.md)** — task-to-file routing; why Claude reads before writing.
+- **[Enforcement Hooks](concepts/enforcement-hooks.md)** — how discipline is enforced, not just suggested.
+- **[Accretive Knowledge](concepts/accretive-knowledge.md)** — why the system gets smarter over time.
 
 ## Reference
 
-- **[Frameworks Index](reference/frameworks.md)** — All 18 frameworks, what they do, when they fire.
-- **[Knowledge Base](reference/knowledge.md)** — Institutional knowledge files.
-- **[Hooks](reference/hooks.md)** — Enforcement scripts + the host-side lock reaper.
-- **[Scheduled Tasks](reference/scheduled-tasks.md)** — a catalog of background tasks; run a few weekly, the rest on demand.
+- **[Frameworks Index](reference/frameworks.md)** — every playbook, what it does, when it fires.
+- **[Knowledge Base](reference/knowledge.md)** — the institutional-knowledge files.
+- **[Hooks](reference/hooks.md)** — enforcement scripts + the host-side lock reaper.
+- **[Scheduled Tasks](reference/scheduled-tasks.md)** — the optional automation catalog.
 
 ## Deeper reading
 
-- [ARCHITECTURE.md](../ARCHITECTURE.md) — Full system design, file roles, infrastructure postmortems.
-- [ETHOS.md](../ETHOS.md) — The six operating principles in full.
-- [README.md](../README.md) — Repo-level overview.
+- [ARCHITECTURE.md](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ARCHITECTURE.md) — full system design, file roles, infrastructure postmortems.
+- [ETHOS.md](https://github.com/ckinkead-sayari/GTM-OSS/blob/main/ETHOS.md) — the operating principles in full.
 
 ---
 
 ## Audience
 
-Built as a forkable single-user GTM operating system. Fork it, fill in your own domain knowledge (industry, product, voice), keep your fork in sync with framework + infrastructure updates from upstream.
-
-Not a multi-tenant product. Single-user operating system, meant to be forked per person.
+A single-user operating system, meant to be instantiated per person — your voice and your accounts don't average with anyone else's. Teams adopt it one private repo per rep, sharing the domain layer through [Team Adoption](start-here/team-adoption.md). Not a multi-tenant product.
