@@ -22,6 +22,8 @@ cd my-gtm
 
 No `gh` CLI? On GitHub: **Use this template** → name it → visibility **Private** → clone yours.
 
+**No GitHub account at all?** The system is just files — GitHub is for versioning/backup, not for running it. Get the `claudeGTM-starter-kit.zip` from whoever runs it (or `bash tools/build-starter-kit.sh`), unzip, open the folder in Claude Code, and skip to step 2. Optional: `git init` locally (no remote) for history; back the folder up with Time Machine or a cloud drive. A non-GitHub git host (GitLab, Bitbucket, internal SCM) works identically if you want a remote. Truly nothing to copy? Open an empty folder in Claude Code and run **`/recreate-from-scratch`** to regenerate the skeleton from spec, then continue at step 2.
+
 **Terminal-averse?** That's fine — open Claude Code, paste this page, and say "do the quick start for me." Every command in these docs is something Claude can run on your behalf; your job is the judgment, not the typing. (More reassurance: [FAQ](faq.md), first question.)
 
 The SessionStart digest re-checks your remote's visibility every session and warns loudly if working data is sitting in a public repo.
