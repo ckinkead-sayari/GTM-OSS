@@ -685,3 +685,28 @@ Also extended both scripts to handle `HEAD.lock` in addition to `index.lock` (HE
 **Fix (S-036).** Added `ORIG_HEAD.lock` to both layers' scope lists — the reaper's lock loop and `git-safe.sh`'s preflight (`try_clear_lock`), plus the `.bak` cleanup line. All existing guards (mid-op, ghost-aware live-holder, 2s age) apply unchanged. Verified with the full 6-case matrix including an end-to-end reap by the live launchd agent.
 
 **Lesson.** A hardcoded-scope safety tool needs a documented rule for *when scope grows*, or every newly-observed variant costs weeks of manual cleanup before anyone notices the pattern. The rule is now written into the script header: scope grows only when a lock type is actually observed stranded — and the observation count was already 3 before this entry existed. When granting yourself a recurring manual permission (`rm -f .../ORIG_HEAD.lock` was in settings.local.json since April), treat the grant itself as the recurrence signal.
+
+### Scheduled task fires but produces no output (S-035 → S-044, instrumented — root cause unconfirmed)
+
+**Symptom.** An enabled Local task shows a fresh `lastRunAt` in the Desktop scheduler but produces nothing: no Slack post, no `handoff.jsonl` line, no `task_complete`, no commit. Observed repeatedly May–Jun 2026: the May 5/8 gap, the Jun 12 retro ("lastRunAt 10:08:25Z, zero output"), and the Jun 19 retro + Jun 22 briefing (both fired, both silent). The session-start digest catches it via the handoff-gap heuristic — *detection*, not a fix.
+
+**Evidence (S-044 analytics trail).** Three distinct signatures, which is the whole diagnosis:
+- `mixpanel-usage-sync` → logs `task_start` **and** `task_failed` + posts a Slack BLOCKED notice. Fails **loudly**. It is the only task with an explicit early MCP-availability guard that writes output on the failure path.
+- `pipeline-staleness-check` (Jun 17) → logged `task_start`, no `task_complete`. Died **mid-body**.
+- `weekly-gtm-retro` (Jun 19) + `daily-gtm-briefing` (Jun 22) → **no `task_start` at all**. Died during **Setup**, before reaching the trace-logging step.
+
+**Why the others were silent.** In `frameworks/task-preamble.md`, `task_start` logging lives under **Coordination**, which runs *after* **Setup** (`git pull` + read CLAUDE.md + read large files; active-context alone is ~37K tokens). All real output (Slack/handoff/analytics/git) is written at the *end* of each SKILL. So any stumble before the end = total silence. mixpanel only escapes this because its specific failure (missing MCP) is one it's explicitly told to announce.
+
+**Ruled out (S-044).** SessionStart hook — `session-start.sh` is read-only and `exit 0` always; it cannot abort a scheduled session. MCP availability — 7/8 MCPs probe OK interactively; the silent tasks don't depend on the broken one ([YOUR_PRODUCT]). Git-lock stranding — that's the index/HEAD/ORIG_HEAD postmortems above; it surfaces as git *errors*, and the host reaper handles it.
+
+**Layer analysis.** Prior "fixes" lived at the task-CONTENT layer (mixpanel precheck, Slack-on-block). The remaining failures are at the task-RUNTIME/launch layer or in Setup itself — a content patch can't reach them. The leading suspect within reach is **raw `git pull` in Setup** hanging or erroring on a dirty tree / stranded lock with no defined failure handling, causing the agent to stop before it logs or outputs anything.
+
+**Fix attempt (S-044) — honestly, instrumentation + one plausible-cause fix, NOT a confirmed cure.** Added a **Step 0 heartbeat** to the 3 silent SKILLs (`weekly-gtm-retro`, `daily-gtm-briefing`, `pipeline-staleness-check`): log `task_start` to analytics **and** append a `task_started` line to handoff as the literal first action, before git pull or any read. And switched Setup step 1 from raw `git pull` → `bash hooks/git-safe.sh pull` (stale-lock cleanup + serialization + defined exit codes). These SKILLs live in `~/.claude/scheduled-tasks/` — **machine-local, not repo-tracked**, so the edits do not propagate via git and the team starter kit (which ships no task templates) is unaffected.
+
+**The real-environment test (only the operator can run it).** This converts a silent death into a clean diagnostic fork on the next fire (Wed staleness ~10:01 + mixpanel ~13:06; Fri retro ~11:08):
+- Output appears → the git-safe swap fixed it.
+- `task_started` line but no completion → died mid-run; the heartbeat now shows *when*, narrow from there.
+- Still total silence (no `task_started` either) → the runtime isn't executing the prompt at all → justifies delete + recreate of the task registration (the TODOS P0 lever), now with evidence rather than as a blind patch.
+Faster path: trigger one run manually from the Desktop app **Scheduled** sidebar to capture the error live.
+
+**Lesson.** "Fires but silent" is two bugs wearing one coat: a *runtime* failure and an *observability* failure. You cannot fix the first without first killing the second — every output your tasks emit only at the end is a blind spot if they can die early. Log a heartbeat as instruction #1, not as a closing step.

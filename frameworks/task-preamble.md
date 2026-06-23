@@ -2,8 +2,9 @@
 
 Every scheduled task SKILL.md should reference this file for the coordination boilerplate below. This file is read once per task run — the SKILL.md only needs to include task-specific setup and the actual task steps.
 
-## Setup (always run these)
+## Setup (always run these, in order)
 
+0. **Heartbeat FIRST — before the git pull below or any file read.** As your very first action, append a `task_start` event to `memory/analytics.jsonl` AND a `task_started` line to `memory/handoff.jsonl` (run_id `{task-abbrev}-{YYYYMMDD}`). *Why:* a scheduled task that dies during setup or an early step otherwise leaves NO trace — silent failure is indistinguishable from "never fired" (postmortem: `ARCHITECTURE.md` → "Scheduled task fires but produces no output"). The heartbeat converts a silent death into "started at T, never completed," which is the diagnostic signal everything else depends on. Output written only at the end of a task is a blind spot if the task can die early.
 1. Run `bash /Users/ckinkead-sayari/GTM-OSS/hooks/git-safe.sh pull` to get latest state. `git-safe.sh` defensively clears stale `.git/index.lock` files (>5m old) and serializes git ops across concurrent tasks. If it exits with code 1, `.git/index.lock` is recent — another git op may be live; wait 60s and retry once, then abort with `task_blocked` if still locked.
 2. Read `/Users/ckinkead-sayari/GTM-OSS/.claude/CLAUDE.md` for system context.
 
@@ -15,7 +16,7 @@ Task-specific additional reads (if any) are listed in the SKILL.md's own Setup s
 
 **Retry policy:** If any MCP call fails, wait 60s and retry (max 2 retries with 60s/120s delays). If all retries fail, use fallback per `frameworks/task-coordination.md`. Log each MCP call outcome.
 
-**Trace logging:** Log `task_start` event to `/Users/ckinkead-sayari/GTM-OSS/memory/analytics.jsonl` at the beginning. Log `task_complete` (or `task_failed`) at the end with duration and key metrics. Use run_id format: `{task-abbrev}-{YYYYMMDD}`.
+**Trace logging:** The `task_start` event is the **Step 0 heartbeat** above — it is your first action, not a step you reach later. Log `task_complete` (or `task_failed`) at the end with duration and key metrics, and append the matching completion line to handoff. Use run_id format: `{task-abbrev}-{YYYYMMDD}` (same id as the heartbeat). If you ever reach the end without a heartbeat already logged, that's an ordering bug — log both and flag it.
 
 **Task registry:** After completion, append a status record to `/Users/ckinkead-sayari/GTM-OSS/memory/task-registry.jsonl` with task name, status, timestamp, data_freshness date, and any errors.
 
