@@ -1,0 +1,7 @@
+{
+  "name": "claudegtm-os",
+  "version": "0.1.0",
+  "description": "The claudeGTM operating-system layer: session-lifecycle rituals (preamble, end-session), guided first-run setup (bootstrap), and a from-scratch rebuilder (recreate-from-scratch). The rituals and scaffolding that make context compound across sessions.",
+  "author": { "name": "claudeGTM" },
+  "keywords": ["gtm", "claude-code", "operating-system", "session-lifecycle", "scaffolding"]
+}

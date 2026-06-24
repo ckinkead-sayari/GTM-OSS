@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "claudegtm",
+  "description": "claudeGTM — install the operating-system layer (lifecycle rituals + from-scratch scaffolder) as a Claude Code plugin.",
+  "owner": { "name": "claudeGTM" },
+  "plugins": [
+    {
+      "name": "claudegtm-os",
+      "description": "Session-lifecycle rituals (preamble, end-session), guided first-run (bootstrap), and a from-scratch rebuilder (recreate-from-scratch).",
+      "category": "productivity",
+      "source": "./claudegtm-os"
+    }
+  ]
+}
