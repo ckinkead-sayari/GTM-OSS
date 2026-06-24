@@ -15,6 +15,7 @@ A forkable operating system for account managers, sellers, and CS reps doing dee
 | **Want to see it before installing anything** | [An Example Session](start-here/example-session.md) — the full loop in 5 minutes of reading, including the hooks blocking bad work |
 | **Evaluating / want the philosophy first** | [Introduction](start-here/introduction.md) + the Concepts section below |
 | **Not an engineer, slightly terminal-averse** | Good news: [FAQ, first question](start-here/faq.md). Claude runs the commands; you bring the judgment |
+| **Just want one page to send someone** | [How to Use It](start-here/how-to-use-it.md) — the overview + diagrams, evaluate-or-onboard in one read |
 
 ## How it works
 
@@ -47,6 +48,7 @@ flowchart LR
 
 ## Start Here
 
+- **[How to Use It](start-here/how-to-use-it.md)** — the one-page overview (what it is · the loop · setup), with diagrams. Forward it to anyone.
 - **[Quick Start](start-here/quick-start.md)** — private repo → `/bootstrap` → first session. ~15 minutes to running.
 - **[An Example Session](start-here/example-session.md)** — watch the whole loop run, hooks and all, before you commit to anything.
 - **[Team Adoption](start-here/team-adoption.md)** — onboarding the second (and tenth) person on a team.
